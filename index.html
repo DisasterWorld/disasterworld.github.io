@@ -2,489 +2,362 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerfies: Deformable Neural Radiance Fields</title>
+  <meta name="description" content="DisasterWorld is a simulation benchmark for multi-robot survivor search in procedurally generated disaster-damaged urban and suburban scenes.">
+  <meta name="keywords" content="DisasterWorld, search and rescue, disaster response, multi-robot search, object-goal navigation, benchmark, Isaac Sim">
+  <title>DisasterWorld: A Benchmark for Survivor Search in Immediate Post-Disaster Response</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  <!-- TODO: add static/images/favicon.svg, then uncomment. -->
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</nav>
-
-
+<!-- Title, authors, links. -->
 <section class="hero">
   <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
-            <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
-            </span>
-          </div>
+    <div class="container is-max-desktop has-text-centered">
+      <h1 class="title is-1 publication-title">DisasterWorld</h1>
+      <h2 class="subtitle is-3 publication-title">A Benchmark for Survivor Search in Immediate Post-Disaster Response</h2>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Washington,</span>
-            <span class="author-block"><sup>2</sup>Google Research</span>
-          </div>
+      <!-- TODO: homepage link for Steven Brewer. -->
+      <div class="is-size-5 publication-authors">
+        <span class="author-block"><a href="https://krrishjain.com/">Krrish Jain</a><sup>1*</sup>,</span>
+        <span class="author-block"><a href="https://muyangyan.github.io/">Muyang Yan</a><sup>1*</sup>,</span>
+        <span class="author-block">Steven Brewer<sup>2</sup>,</span>
+        <span class="author-block"><a href="https://theairlab.org/team/wenshan/">Wenshan Wang</a><sup>1</sup>,</span>
+        <span class="author-block"><a href="https://seungchan-kim.github.io/">Seungchan Kim</a><sup>1</sup>,</span>
+        <span class="author-block"><a href="https://theairlab.org/team/sebastian/">Sebastian Scherer</a><sup>1</sup></span>
+      </div>
+      <div class="is-size-5 publication-authors">
+        <span class="author-block"><sup>1</sup>Carnegie Mellon University,</span>
+        <span class="author-block"><sup>2</sup>Software Engineering Institute, Carnegie Mellon University</span>
+      </div>
+      <div class="is-size-6 publication-authors"><sup>*</sup>Equal contribution</div>
 
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
-            </div>
-
-          </div>
-        </div>
+      <!-- TODO: fill in each href. -->
+      <div class="publication-links">
+        <span class="link-block">
+          <a href="#" class="button is-normal is-rounded is-dark">
+            <span class="icon"><i class="fas fa-file-pdf"></i></span>
+            <span>Paper</span>
+          </a>
+        </span>
+        <span class="link-block">
+          <a href="#" class="button is-normal is-rounded is-dark">
+            <span class="icon"><i class="ai ai-arxiv"></i></span>
+            <span>arXiv</span>
+          </a>
+        </span>
+        <span class="link-block">
+          <a href="#" class="button is-normal is-rounded is-dark">
+            <span class="icon"><i class="fab fa-github"></i></span>
+            <span>Code</span>
+          </a>
+        </span>
+        <span class="link-block">
+          <a href="#" class="button is-normal is-rounded is-dark">
+            <span class="icon"><i class="far fa-images"></i></span>
+            <span>Data</span>
+          </a>
+        </span>
       </div>
     </div>
   </div>
 </section>
 
+<!-- Teaser: each simulated scene followed by its real counterpart (columns on desktop, rows on phones). -->
 <section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
-      </h2>
-    </div>
-  </div>
-</section>
-
-
-<section class="hero is-light is-small">
   <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
+    <div class="container is-max-desktop">
+      <div class="teaser-grid">
+        <figure><img src="./static/images/teaser/hurricane.jpg" alt="Simulated hurricane scene"><span>Hurricane</span></figure>
+        <figure><img src="./static/images/teaser/hurricane_real.jpg" alt="Hurricane Ida aftermath"><span>Real</span></figure>
+        <figure><img src="./static/images/teaser/earthquake.jpg" alt="Simulated earthquake scene"><span>Earthquake</span></figure>
+        <figure><img src="./static/images/teaser/earthquake_real.jpg" alt="Turkey-Syria earthquake damage"><span>Real</span></figure>
+        <figure><img src="./static/images/teaser/fire.jpg" alt="Simulated fire scene"><span>Fire</span></figure>
+        <figure><img src="./static/images/teaser/fire_real.jpg" alt="Building fire in downtown St. Paul"><span>Real</span></figure>
+        <figure><img src="./static/images/teaser/tornado.jpg" alt="Simulated tornado scene"><span>Tornado</span></figure>
+        <figure><img src="./static/images/teaser/tornado_real.jpg" alt="Tornado damage in Nebraska and Iowa"><span>Real</span></figure>
+      </div>
+      <p class="caption">
+        Simulated DisasterWorld scenes paired with real events. Photographs:
+        <a href="https://www.goodmorningamerica.com/news/story/hurricane-ida-aftermath-climate-change-making-hurricanes-devastating-79727034">Hurricane Ida</a> (ABC News),
+        <a href="https://www.reuters.com/news/picture/destruction-from-above-aerial-views-of-t-idUSRTSFYPKQ/">Turkey&ndash;Syria earthquake</a> (Reuters),
+        <a href="https://www.mprnews.org/story/2020/08/04/huge-fire-damages-building-under-construction-in-downtown-st-paul">St. Paul building fire</a> (MPR News),
+        <a href="https://www.pbs.org/newshour/nation/residents-take-stock-of-damage-from-tornadoes-that-tore-through-nebraska-and-iowa">Nebraska and Iowa tornadoes</a> (PBS NewsHour).
+      </p>
+      <h2 class="subtitle has-text-centered">
+        Procedurally generated disaster scenes for evaluating teams of robots searching for survivors.
+      </h2>
+      <div class="stats">
+        <div><strong>4</strong>disaster types</div>
+        <div><strong>2</strong>localities</div>
+        <div><strong>3</strong>damage levels</div>
+        <div><strong>24</strong>scene geometries</div>
+        <div><strong>120</strong>environments</div>
       </div>
     </div>
   </div>
 </section>
 
-
+<!-- Abstract. -->
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
-          </p>
-        </div>
-      </div>
+    <h2 class="title is-3 has-text-centered">Abstract</h2>
+    <div class="content has-text-justified">
+      <p>
+        After a large-scale disaster such as an earthquake or fire, responders must locate survivors across areas
+        that are too dangerous to search directly or too large to search quickly. Robotic systems could provide this
+        capability at scale, yet full-system development and evaluation in large-scale disaster environments are
+        challenging because realistic physical trials are dangerous and difficult to reproduce.
+      </p>
+      <p>
+        We present DisasterWorld, a benchmark for multi-target survivor search by a team of robots during the initial
+        response phase. It provides procedurally generated scenes crossing 2 localities (urban and suburban),
+        4 disaster types (hurricane, tornado, fire, earthquake), and 3 damage levels, each paired with 5 sampled
+        survivor configurations, for 120 released environments in total. Additional survivor configurations can be
+        generated on demand without rebuilding the underlying scene. Scenes include physics-settled debris with
+        active collision geometry and evidence-informed survivor locations, together with exact ground truth for
+        survivors and damaged structures. By enabling repeatable multi-target search missions under a fixed mission
+        budget across this range of settings, DisasterWorld evaluates complete autonomy systems using time-sensitive
+        measures of survivor discovery and path efficiency.
+      </p>
     </div>
-    <!--/ Abstract. -->
-
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-    <!--/ Paper video. -->
   </div>
 </section>
 
-
+<!-- TODO: add a video section once one exists:
 <section class="section">
   <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
-        </div>
-      </div>
+    <h2 class="title is-3 has-text-centered">Video</h2>
+    <div class="publication-video">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0" frameborder="0"
+              allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
-    <!--/ Matting. -->
+  </div>
+</section>
+-->
 
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
+<!-- Pipeline. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Scene Generation</h2>
+    <div class="content has-text-justified">
+      <p>
+        Each 1&nbsp;km &times; 1&nbsp;km scene begins as a seeded 2-D layout of roads, parcels, buildings, vegetation,
+        vehicles, and public spaces, generated from summary statistics of OpenStreetMap data rather than copied from a
+        single real location. A disaster model decides where damage occurs, the damage is applied to buildings and
+        other scene elements, and physics simulation settles displaced objects and debris before the geometry is fixed.
+        Scenes are assembled from Unreal Engine/Fab and Objaverse-XL assets and run in NVIDIA Isaac Sim, with a
+        ready-to-use aerial-robot configuration built on AirStack.
+      </p>
     </div>
-    <!--/ Animation. -->
-
-
-    <!-- Concurrent Work. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Concurrent Work. -->
-
+    <figure>
+      <img src="./static/images/pipeline.jpg" alt="Dataset generation and simulation pipeline">
+      <figcaption>
+        Assets, procedural layouts, disaster models, and survivor placements are combined to produce the final scenes,
+        which are simulated in Isaac Sim and AirStack.
+      </figcaption>
+    </figure>
   </div>
 </section>
 
+<!-- Disaster models. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Disaster Models</h2>
+    <div class="content has-text-justified">
+      <p>
+        Each disaster model defines a spatial damage intensity over an otherwise intact layout. Local intensity is
+        combined with object type, construction, and environmental conditions to assign structural damage states,
+        informed by published damage scales and post-event studies.
+      </p>
+      <ul>
+        <li><b>Fire</b> spreads from an ignition region as a wind-oriented ellipse whose elongation grows with wind,
+          following wildfire-growth models, leaving burned structures, vegetation damage, smoke, and active flames.</li>
+        <li><b>Tornado</b> damage is concentrated along a meandering track and falls off smoothly across it, with
+          damage categories following the Enhanced Fujita Scale.</li>
+        <li><b>Hurricane</b> damage is broad wind exposure with small spatial variation, plus inundation behind an
+          irregular flood boundary.</li>
+        <li><b>Earthquake</b> intensity decreases radially from an epicenter and is combined with construction type and
+          site conditions to produce facade failure, soft-storey failure, collapse, and settlement.</li>
+      </ul>
+    </div>
+    <figure>
+      <img src="./static/images/damage_models.jpg" alt="Damage maps for each disaster type" loading="lazy">
+      <figcaption>Damage at the highest intensity level for each disaster type, in suburban (top) and urban (bottom) layouts.</figcaption>
+    </figure>
+  </div>
+</section>
 
+<!-- Environments. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Environments</h2>
+    <div class="image-grid gallery">
+      <img src="./static/images/gallery/hurricane_suburban_closeup_1.jpg" alt="Hurricane, suburban" loading="lazy">
+      <img src="./static/images/gallery/hurricane_suburban_people_1.jpg" alt="Hurricane, suburban, survivors" loading="lazy">
+      <img src="./static/images/gallery/hurricane_suburban_people_2.jpg" alt="Hurricane, suburban, survivors" loading="lazy">
+      <img src="./static/images/gallery/hurricane_urban.jpg" alt="Hurricane, urban" loading="lazy">
+      <img src="./static/images/gallery/tornado_suburban_people.jpg" alt="Tornado, suburban, survivors" loading="lazy">
+      <img src="./static/images/gallery/tornado_suburban_perspective.jpg" alt="Tornado, suburban" loading="lazy">
+      <img src="./static/images/gallery/tornado_suburban_debris.jpg" alt="Tornado, suburban debris" loading="lazy">
+      <img src="./static/images/gallery/tornado_urban_1.jpg" alt="Tornado, urban" loading="lazy">
+      <img src="./static/images/gallery/fire_suburban_people.jpg" alt="Fire, suburban, survivors" loading="lazy">
+      <img src="./static/images/gallery/fire_urban_brownstone.jpg" alt="Fire, urban brownstone" loading="lazy">
+      <img src="./static/images/gallery/fire_urban_burnt_down.jpg" alt="Fire, urban, burnt down" loading="lazy">
+      <img src="./static/images/gallery/fire_urban_people.jpg" alt="Fire, urban, survivors" loading="lazy">
+      <img src="./static/images/gallery/earthquake_suburban.jpg" alt="Earthquake, suburban" loading="lazy">
+      <img src="./static/images/gallery/earthquake_suburban_people.jpg" alt="Earthquake, suburban, survivors" loading="lazy">
+      <img src="./static/images/gallery/earthquake_urban.jpg" alt="Earthquake, urban" loading="lazy">
+      <img src="./static/images/gallery/earthquake_urban_1.jpg" alt="Earthquake, urban" loading="lazy">
+    </div>
+    <p class="caption">Rows from top: hurricane, tornado, fire, earthquake, across urban and suburban scenes.</p>
+  </div>
+</section>
+
+<!-- Survivors. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Survivor Placement and Ground Truth</h2>
+    <div class="content has-text-justified">
+      <p>
+        Survivors are added after the damaged geometry is fixed, so new placements can be sampled without rebuilding
+        the scene. Locations, poses, and occlusions are sampled near damaged structures, debris, evacuation routes, and
+        shelters, informed by post-event studies and agency reports. Each task is exported as a USD scene with JSON
+        annotations giving the exact 3-D location, extent, pose, semantic label, and attributes of every survivor and
+        scene element.
+      </p>
+    </div>
+    <div class="image-grid survivors">
+      <img src="./static/images/survivors/fire_rubble.jpg" alt="Survivor near fire and rubble" loading="lazy">
+      <img src="./static/images/survivors/fire_rooftop.jpg" alt="Survivor on a burning rooftop" loading="lazy">
+      <img src="./static/images/survivors/flood.jpg" alt="Survivor in floodwater" loading="lazy">
+      <img src="./static/images/survivors/legs_rubble.jpg" alt="Survivor partly beneath rubble" loading="lazy">
+      <img src="./static/images/survivors/toppled_car.jpg" alt="Survivor inside an overturned vehicle" loading="lazy">
+      <img src="./static/images/survivors/upper_body_rubble.jpg" alt="Survivor partly beneath rubble" loading="lazy">
+    </div>
+    <p class="caption">Survivors near fire, in floodwater, beneath rubble, and inside an overturned vehicle.</p>
+  </div>
+</section>
+
+<!-- Task and metrics. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Task and Metrics</h2>
+    <div class="content has-text-justified">
+      <p>
+        Within a mission time budget <i>T</i>, a team of ground or aerial robots must visually locate and report as many
+        people as possible. Each robot receives only onboard RGB-D observations and its estimated state; no prior map,
+        scene geometry, survivor count, or survivor location is available. Robots may act independently, communicate,
+        or share a centralized policy. Each detection is reported with a timestamp and estimated world-frame location,
+        and a survivor is credited at the earliest valid report from any robot.
+      </p>
+      <p>
+        Because finding survivors sooner matters, the primary metric is <b>Time-Integrated Progress</b> (TIP), the
+        normalized area under the curve of survivors found over time:
+      </p>
+      <p class="equation">
+        TIP<sub><i>i</i></sub> = 1 &minus; <sup>1</sup>&frasl;<sub><i>N<sub>i</sub></i></sub>
+        &sum;<sub><i>j</i></sub> <i>t<sub>ij</sub></i> / <i>T</i>
+      </p>
+      <p>
+        where <i>t<sub>ij</sub></i> is the time survivor <i>j</i> is first found (<i>T</i> if never). We also report
+        <a href="https://arxiv.org/abs/2012.03912"><b>Progress</b></a>, the fraction of survivors found by the end of the mission, and <a href="https://arxiv.org/abs/2012.03912"><b>Progress-weighted Path
+        Length</b></a> (PPL), which also rewards finding them with shorter routes.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Results. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Results</h2>
+    <div class="content has-text-justified">
+      <p>
+        We evaluate 5 search policies spanning systematic coverage, geometric exploration, and semantic object-goal
+        navigation on 24 tasks (one survivor arrangement per scene, 1,122 survivors in total), with teams of 8 aerial
+        robots running AirStack under a 600-second mission budget.
+      </p>
+    </div>
+    <div class="table-container">
+      <table class="table is-fullwidth is-hoverable results-table">
+        <thead>
+          <tr><th>Method</th><th>TIP (%) &uarr;</th><th>Progress (%) &uarr;</th><th>PPL &uarr;</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Lawnmower coverage</td><td>0.273</td><td>0.938</td><td>0.000393</td></tr>
+          <tr><td>Frontier exploration</td><td>2.286</td><td>3.721</td><td><b>0.001782</b></td></tr>
+          <tr><td>VLFM</td><td>1.915</td><td>2.702</td><td>0.001515</td></tr>
+          <tr><td>Co-NavGPT</td><td>0.077</td><td>0.105</td><td>0.000045</td></tr>
+          <tr><td>RAVEN</td><td><b>3.504</b></td><td><b>5.360</b></td><td>0.001443</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="content has-text-justified">
+      <p>
+        RAVEN achieves the highest TIP and Progress, and Frontier the highest PPL. Every method finds partially
+        obstructed survivors less often than unobstructed ones, and survivors lying on the ground are rarely found.
+        The low scores across the board leave substantial room for improvement in both search planning and
+        multi-robot coordination.
+      </p>
+    </div>
+    <figure>
+      <img src="./static/images/trajectories.jpg" alt="Search trajectories of four baselines" loading="lazy">
+      <figcaption>Close-up search trajectories of RAVEN, Frontier, Lawnmower, and VLFM in a suburban fire scene for one robot.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- BibTeX. -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
+    <!-- TODO: arXiv number. -->
+    <pre><code>@article{jain2026disasterworld,
+  title   = {DisasterWorld: A Benchmark for Survivor Search in
+             Immediate Post-Disaster Response},
+  author  = {Jain, Krrish and Yan, Muyang and Brewer, Steven and
+             Wang, Wenshan and Kim, Seungchan and Scherer, Sebastian},
+  journal = {arXiv preprint arXiv:XXXX.XXXXX},
+  year    = {2026},
 }</code></pre>
   </div>
 </section>
 
-
 <footer class="footer">
-  <div class="container">
+  <div class="container is-max-desktop">
     <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
-        </div>
-      </div>
+      <p>
+        This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+        Commons Attribution-ShareAlike 4.0 International License</a>.
+        Template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+      </p>
     </div>
   </div>
 </footer>
+
+<!-- Lightbox: click a figure to view it full screen; click anywhere or press Esc to close. -->
+<dialog id="lightbox"><img alt=""></dialog>
+<script>
+  const lightbox = document.getElementById('lightbox');
+  document.addEventListener('click', e => {
+    if (lightbox.open) return lightbox.close();
+    const img = e.target.closest('figure img, .image-grid img');
+    if (!img) return;
+    lightbox.firstChild.src = img.src;
+    lightbox.firstChild.alt = img.alt;
+    lightbox.showModal();
+  });
+</script>
 
 </body>
 </html>
