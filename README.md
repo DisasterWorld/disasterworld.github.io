@@ -1,6 +1,6 @@
 # DisasterWorld project page
 
-Source for the DisasterWorld project page and rendered documentation. The repository is private and GitHub Pages is disabled; preview the site locally during preparation.
+Source for the DisasterWorld project page and documentation, including the documentation theme and build configuration. The repository is private and GitHub Pages is disabled; preview the site locally during preparation.
 Built on the [Nerfies](https://github.com/nerfies/nerfies.github.io) template (Bulma, no build step).
 
 ## Content
@@ -9,7 +9,7 @@ Text and figures follow the paper source (`coasei/overleaf/ICRA_2027_Disaster_Be
 What's still missing is marked `TODO` in `index.html`:
 
 ```bash
-grep -n TODO index.html
+rg -n TODO index.html docs-src
 ```
 
 Images in `static/images/` are web-sized copies of the paper's figures (JPEG, at most 2400 px wide for
@@ -22,7 +22,7 @@ each); GitHub rejects files over 100 MB.
 python3 -m http.server 8000 --bind 127.0.0.1   # then open http://localhost:8000
 ```
 
-The page uses plain HTML, CSS, and JavaScript; no build step or dependency installation is needed.
+The project page uses plain HTML, CSS, and JavaScript. The rendered documentation is checked in, so viewing the site requires no build step or dependency installation.
 `static/js/index.js` provides a keyboard-accessible image viewer. The original pipeline figure,
 sim/real comparisons, and environment gallery remain visible without JavaScript.
 
@@ -30,13 +30,17 @@ sim/real comparisons, and environment gallery remain visible without JavaScript.
 
 Open `http://localhost:8000/docs/`, or use the Documentation button on the project page. This directory contains the rendered Material for MkDocs site with navigation, full-text search and a light/dark theme.
 
-Edit the source pages and `mkdocs.yml` in the sibling DisasterWorld code checkout, then rebuild:
+Edit pages in `docs-src/` and the theme/navigation in `mkdocs.yml` here. To install the documentation build tools and rebuild:
 
 ```bash
-../disasterworld/dw docs build --website-dir .
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements-docs.txt
+.venv/bin/python -m mkdocs build --strict
 ```
 
-The build writes HTML, styles, JavaScript and the search index into `docs/`. Do not edit generated pages directly. This command updates only the local checkout; it does not enable Pages or publish the site.
+The build writes HTML, styles, JavaScript and the search index into `docs/`. Refresh `http://localhost:8000/docs/` after rebuilding. Commit the source changes and regenerated `docs/` together; do not edit generated pages directly. Building the website does not require the DisasterWorld runtime or AirStack.
+
+The documentation workflow checks the build and provides a downloadable artifact. GitHub Pages remains disabled; builds do not publish the site.
 
 Before release, replace the video poster in `#video` with the project video and provide real
 Paper, arXiv, Code, and Dataset URLs. Release resource anchors at the top of the page and in `#use` currently

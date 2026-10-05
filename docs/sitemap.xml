@@ -29,15 +29,15 @@
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
-         <loc>https://disasterworld.github.io/docs/remote-inference-plan/</loc>
-         <lastmod>2026-10-05</lastmod>
-    </url>
-    <url>
          <loc>https://disasterworld.github.io/docs/survivors/</loc>
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
          <loc>https://disasterworld.github.io/docs/troubleshooting/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://disasterworld.github.io/docs/vlm-api/</loc>
          <lastmod>2026-10-05</lastmod>
     </url>
 </urlset>
