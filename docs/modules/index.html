@@ -789,6 +789,7 @@
 </tr>
 </tbody>
 </table>
+<p>The CoNavGPT and RAVEN baselines adapt their original implementations for AirStack: <a href="https://github.com/ybgdgh/Co-NavGPT2">Co-NavGPT2</a> and <a href="https://github.com/castacks/RAVEN">RAVEN</a>. Source attribution and adaptation details are recorded in the ROS packages and the repository's <a href="https://github.com/DisasterWorld/DisasterWorld/blob/main/NOTICE.md">NOTICE</a>.</p>
 <p>The simulator uses upstream Pegasus. Research camera render gates, tick skipping and time slicing are excluded. <code>SurvivorSearch</code> is a benchmark-owned action; <code>NavigateTask</code> and <code>SemanticSearchTask</code> are not extended. Policies publish nonempty <code>/robot_N/global_plan</code> paths to the upstream MIGHTY follower after takeoff.</p>
 <p>The runtime gives each aircraft a ROS domain and bridges named observation/plan topics for cooperative policies. All containers use the benchmark's isolated Compose project/network. Private survivor annotations are available only to simulation/evaluation.</p>
 <p>For detailed RayFronts documentation, see the <a href="https://github.com/RayFronts/RayFronts">original RayFronts repository</a>. AirStack module conventions are documented in the <a href="https://docs.theairlab.org/develop/docs/">AirStack documentation</a>. These integrations can move into upstream AirStack independently of DisasterWorld. Compatibility with later revisions requires explicit adapter testing and updating the lock.</p>

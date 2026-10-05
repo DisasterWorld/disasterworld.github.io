@@ -776,9 +776,8 @@
 </code></pre></div>
 <p>Alternatively unpack the released self-contained bundle into <code>dataset.root</code>. Existing nonempty dataset directories are not replaced. Setup supports <code>--skip-build</code> followed by <code>./dw build</code> for inspecting registration before an expensive build.</p>
 <p>Then run a mission; configuration validation and task preparation happen automatically:</p>
-<div class="highlight"><pre><span></span><code>./dw<span class="w"> </span>run<span class="w"> </span>--robots<span class="w"> </span><span class="m">4</span><span class="w"> </span>--baseline<span class="w"> </span>frontier<span class="w"> </span>--accept-isaac-license
+<div class="highlight"><pre><span></span><code>./dw<span class="w"> </span>run<span class="w"> </span>--robots<span class="w"> </span><span class="m">4</span><span class="w"> </span>--baseline<span class="w"> </span>frontier
 </code></pre></div>
-<p>Running Isaac Sim requires acceptance of NVIDIA's <a href="https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-software-license-agreement/">EULA</a> and <a href="https://www.nvidia.com/en-us/about-nvidia/privacy-policy/">privacy policy</a>. <code>--accept-isaac-license</code> sets <code>ACCEPT_EULA=Y</code> and <code>OMNI_ENV_PRIVACY_CONSENT=Y</code> for the simulator container. Setup does not accept these terms for you.</p>
 <p>To work on the three repositories together, use <code>./dw setup --module-dir .. --public-only</code>. This uses sibling module folders instead of downloading release revisions. The release lock records the supported AirStack and Pegasus pins; other AirStack versions are not assumed compatible.</p>
 
 

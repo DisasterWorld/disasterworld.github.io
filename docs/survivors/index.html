@@ -765,7 +765,7 @@
 <p>Then run the generated task on the same scene:</p>
 <div class="highlight"><pre><span></span><code>./dw<span class="w"> </span>run<span class="w"> </span>--scene<span class="w"> </span>fire/urban/level_1<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--generated-task<span class="w"> </span>generated/fire-urban-l1-task-7/generated_task.json<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--robots<span class="w"> </span><span class="m">4</span><span class="w"> </span>--baseline<span class="w"> </span>frontier<span class="w"> </span>--accept-isaac-license
+<span class="w">  </span>--robots<span class="w"> </span><span class="m">4</span><span class="w"> </span>--baseline<span class="w"> </span>frontier
 </code></pre></div>
 <p><code>--scene</code> selects <code>scenes/fire/urban/level_1/manifest.json</code> in this example. Its <code>geometry_file</code> and <code>placement_candidates_file</code> identify the original geometry and the candidates validated for that exact layout. The generator checks the geometry checksum before sampling, and the task records its source scene and geometry checksum. A run rejects a task if its scene or geometry differs.</p>
 <p>Generated tasks live inside <code>dataset.root</code> so USD references work in the simulator container. <code>generated_task</code> is a dataset-relative manifest path. Published variants remain separate; generated tasks are marked synthetic in evaluation metadata. Candidate sampling is deterministic for a given seed and occurs without replacement; a location can have several verified posed assets.</p>
