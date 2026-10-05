@@ -18,8 +18,40 @@ After setup and installing the scenes, run this from the DisasterWorld code chec
 
 Use the navigation sidebar for dataset structure, survivor generation, baseline integration and troubleshooting. [Mission configuration](configuration.md) describes fleet sizes, partitioned or shared bounds, and local inference and optional VLM APIs.
 
-!!! todo "Maintainer TODO — before release"
+```{admonition} Maintainer TODO — before release
+:class: maintainer-todo
 
-    Publish the dataset bundle and fill in its download URL and checksum. Include local USD assets, scene manifests, survivor annotations and verified spawns in the [bundle format](dataset.md). Complete end-to-end simulation validation and the paper reproduction audit before release.
+Publish the dataset bundle and fill in its download URL and checksum. Include local USD assets, scene manifests, survivor annotations and verified spawns in the [bundle format](dataset.md). Complete end-to-end simulation validation and the paper reproduction audit before release.
+```
 
 For detailed RayFronts documentation, see the [original RayFronts repository](https://github.com/RayFronts/RayFronts). For AirStack setup and interfaces, see the [AirStack documentation](https://docs.theairlab.org/develop/docs/).
+
+```{toctree}
+:hidden:
+:caption: Getting started
+:maxdepth: 1
+
+installation
+configuration
+```
+
+```{toctree}
+:hidden:
+:caption: Benchmark
+:maxdepth: 1
+
+dataset
+survivors
+evaluation
+```
+
+```{toctree}
+:hidden:
+:caption: Integration and reference
+:maxdepth: 1
+
+custom-baselines
+modules
+vlm-api
+troubleshooting
+```

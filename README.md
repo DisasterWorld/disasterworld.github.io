@@ -28,14 +28,14 @@ sim/real comparisons, and environment gallery remain visible without JavaScript.
 
 ## Documentation
 
-Open `http://localhost:8000/docs/`, or use the Documentation button on the project page. This directory contains the rendered Material for MkDocs site with navigation, full-text search and a light/dark theme.
+Open `http://localhost:8000/docs/`, or use either Docs button on the project page. This directory contains the rendered [Furo](https://pradyunsg.me/furo/) documentation site with sidebar navigation, full-text search and light/dark themes.
 
-Edit pages in `docs-src/` and the theme/navigation in `mkdocs.yml` here. To install the documentation build tools and rebuild:
+Edit pages in `docs-src/`, navigation in `docs-src/index.md`, and theme settings in `docs-src/conf.py`. Rebuilding requires Python 3.12 or later. To install the documentation build tools and rebuild:
 
 ```bash
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-docs.txt
-.venv/bin/python -m mkdocs build --strict
+.venv/bin/python -m sphinx -b dirhtml -d .cache/sphinx -W --keep-going docs-src docs
 ```
 
 The build writes HTML, styles, JavaScript and the search index into `docs/`. Refresh `http://localhost:8000/docs/` after rebuilding. Commit the source changes and regenerated `docs/` together; do not edit generated pages directly. Building the website does not require the DisasterWorld runtime or AirStack.

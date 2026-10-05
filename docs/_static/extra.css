@@ -1,0 +1,16 @@
+.sidebar-brand { text-align: left; }
+.sidebar-brand-text { display: block; font-weight: 650; letter-spacing: -.025em; }
+.sidebar-docs-label { display: block; margin-top: .3rem; color: var(--color-foreground-secondary); font-size: .9rem; }
+.sidebar-project-link { display: block; margin: 0 1.5rem 1.2rem; font-size: .85rem; }
+.content h1 { font-weight: 650; letter-spacing: -.03em; }
+.content h2 { font-weight: 600; letter-spacing: -.015em; }
+.content p, .content li { line-height: 1.7; }
+.highlight pre { font-size: .83rem; line-height: 1.65; }
+.admonition.maintainer-todo {
+  border-color: #8b75b3;
+  background: rgba(116, 98, 167, .08);
+}
+.admonition.maintainer-todo > .admonition-title {
+  background: rgba(116, 98, 167, .1);
+}
+.admonition.maintainer-todo > .admonition-title::before { background-color: #8b75b3; }

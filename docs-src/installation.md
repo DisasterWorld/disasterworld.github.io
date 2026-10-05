@@ -8,15 +8,19 @@ git clone https://github.com/DisasterWorld/DisasterWorld.git disasterworld && cd
 
 Setup creates a small Python virtual environment, obtains pinned AirStack/MIGHTY/module checkouts in `.runtime`, registers modules using the AirStack CLI, builds isolated container images and builds the ROS overlay. Optional CMU credentials are prompted interactively, with Skip as the default. `./dw setup --public-only` skips those prompts. Credentials and caches stay in ignored local directories. Setup never resets tracked changes in an existing checkout.
 
-!!! todo "Maintainer TODO — public repository access"
+```{admonition} Maintainer TODO — public repository access
+:class: maintainer-todo
 
-    Make the release repositories public when ready. During private preparation, setup requires GitHub access to the repositories even when AirLab credentials are skipped.
+Make the release repositories public when ready. During private preparation, setup requires GitHub access to the repositories even when AirLab credentials are skipped.
+```
 
 The first build and model downloads need internet and substantial disk space; exact resource requirements depend on the selected policies and scenes. Inference and simulation may share GPU 0. Two GPUs are not a requirement, but a single GPU must fit the simulator and selected models. Smaller fleets and Frontier/Lawnmower are useful starting points.
 
-!!! todo "Maintainer TODO — dataset download"
+```{admonition} Maintainer TODO — dataset download
+:class: maintainer-todo
 
-    Set the archive URL and SHA-256 in the default configuration when the bundle is published.
+Set the archive URL and SHA-256 in the default configuration when the bundle is published.
+```
 
 Download the scenes with:
 
