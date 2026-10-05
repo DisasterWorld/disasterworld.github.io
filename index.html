@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,21 +9,36 @@
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/redesign.css">
   <!-- TODO: add static/images/favicon.svg, then uncomment. -->
   <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
 
   <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script defer src="./static/js/index.js"></script>
 </head>
 <body>
+<a class="skip-link" href="#abstract">Skip to abstract</a>
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a class="wordmark" href="#">Disaster<span>World</span></a>
+    <div class="nav-links">
+      <a href="#abstract">Abstract</a>
+      <a href="#task">Task</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#environments">Environments</a>
+      <a href="#results">Results</a>
+      <a href="#use">Resources</a>
+    </div>
+  </div>
+</nav>
 
 <!-- Title, authors, links. -->
-<section class="hero">
+<section class="hero project-hero">
   <div class="hero-body">
     <div class="container is-max-desktop has-text-centered">
-      <h1 class="title is-1 publication-title">DisasterWorld</h1>
+      <h1 class="title is-1 publication-title">Disaster<span>World</span></h1>
       <h2 class="subtitle is-3 publication-title">A Benchmark for Survivor Search in Immediate Post-Disaster Response</h2>
 
       <!-- TODO: homepage link for Steven Brewer. -->
@@ -41,30 +56,30 @@
       </div>
       <div class="is-size-6 publication-authors"><sup>*</sup>Equal contribution</div>
 
-      <!-- TODO: fill in each href. -->
+      <!-- TODO: add href URLs and remove aria-disabled when resources are released. -->
       <div class="publication-links">
         <span class="link-block">
-          <a href="#" class="button is-normal is-rounded is-dark">
+          <a class="resource-link" role="link" aria-disabled="true">
             <span class="icon"><i class="fas fa-file-pdf"></i></span>
             <span>Paper</span>
           </a>
         </span>
         <span class="link-block">
-          <a href="#" class="button is-normal is-rounded is-dark">
+          <a class="resource-link" role="link" aria-disabled="true">
             <span class="icon"><i class="ai ai-arxiv"></i></span>
             <span>arXiv</span>
           </a>
         </span>
         <span class="link-block">
-          <a href="#" class="button is-normal is-rounded is-dark">
+          <a class="resource-link" role="link" aria-disabled="true">
             <span class="icon"><i class="fab fa-github"></i></span>
             <span>Code</span>
           </a>
         </span>
         <span class="link-block">
-          <a href="#" class="button is-normal is-rounded is-dark">
-            <span class="icon"><i class="far fa-images"></i></span>
-            <span>Data</span>
+          <a class="resource-link" role="link" aria-disabled="true">
+            <span class="icon"><i class="fas fa-database"></i></span>
+            <span>Dataset</span>
           </a>
         </span>
       </div>
@@ -93,22 +108,25 @@
         <a href="https://www.mprnews.org/story/2020/08/04/huge-fire-damages-building-under-construction-in-downtown-st-paul">St. Paul building fire</a> (MPR News),
         <a href="https://www.pbs.org/newshour/nation/residents-take-stock-of-damage-from-tornadoes-that-tore-through-nebraska-and-iowa">Nebraska and Iowa tornadoes</a> (PBS NewsHour).
       </p>
-      <h2 class="subtitle has-text-centered">
-        Procedurally generated disaster scenes for evaluating teams of robots searching for survivors.
-      </h2>
-      <div class="stats">
-        <div><strong>4</strong>disaster types</div>
-        <div><strong>2</strong>localities</div>
-        <div><strong>3</strong>damage levels</div>
-        <div><strong>24</strong>scene geometries</div>
-        <div><strong>120</strong>environments</div>
-      </div>
     </div>
   </div>
 </section>
 
+<section class="benchmark-overview" id="benchmark" aria-labelledby="benchmark-title">
+  <div class="container is-max-desktop">
+    <div class="overview-heading"><h2 id="benchmark-title">Benchmark Overview</h2><span>1 km × 1 km per scene</span></div>
+    <div class="stats">
+      <div><strong>4</strong><span>Disaster types</span><small>Hurricane · Tornado · Fire · Earthquake</small></div>
+      <div><strong>2</strong><span>Localities</span><small>Urban · Suburban</small></div>
+      <div><strong>3</strong><span>Damage levels</span><small>Low · Medium · High</small></div>
+      <div class="stat-total"><strong>120</strong><span>Environments</span><small>24 scenes · 5 survivor configurations each</small></div>
+    </div>
+    <p class="benchmark-equation"><span>4 disasters × 2 localities × 3 damage levels</span><span aria-hidden="true">→</span><span><b>24 scene geometries</b> × 5 survivor configurations</span><span aria-hidden="true">→</span><b>120 environments</b></p>
+  </div>
+</section>
+
 <!-- Abstract. -->
-<section class="section">
+<section class="section" id="abstract">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Abstract</h2>
     <div class="content has-text-justified">
@@ -133,20 +151,62 @@
   </div>
 </section>
 
-<!-- TODO: add a video section once one exists:
-<section class="section">
+<!-- TODO: replace this poster with an accessible video/embed when the project video is ready. -->
+<section class="section video-section" id="video" aria-labelledby="video-title">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Video</h2>
-    <div class="publication-video">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID?rel=0" frameborder="0"
-              allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    <h2 class="title is-3 has-text-centered" id="video-title">Video</h2>
+    <div class="video-placeholder">
+      <button class="video-symbol" type="button" disabled aria-label="Play video"><i class="fas fa-play" aria-hidden="true"></i></button>
     </div>
   </div>
 </section>
--->
+
+<!-- Task formulation, from overleaf/sections/task.tex and sections/evaluation.tex. -->
+<section class="section" id="task" aria-labelledby="task-title">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3" id="task-title">Task Formulation</h2>
+    <figure class="task-figure" aria-label="Survivor-search task: observations, team policy, detection reports, and evaluation">
+      <div class="task-mission"><p><strong>Objective:</strong> Locate and report as many survivors as possible within time budget <i>T</i>.</p></div>
+      <ol class="task-flow">
+        <li class="task-node">
+          <h3><span class="task-step">1</span>Observations</h3>
+          <div class="task-observation"><img src="./static/images/task/observation_tornado_suburban.jpg" alt="Simulated suburban tornado scene with collapsed buildings, debris, and surrounding streets" loading="lazy"><span>Example scene view</span></div>
+          <p class="task-node-main">Onboard RGB-D<br>Estimated state &amp; pose</p>
+          <p class="task-node-note">Initially: starting pose<br>Optional search boundary</p>
+          <span class="task-arrow" aria-hidden="true">→</span>
+        </li>
+        <li class="task-node">
+          <h3><span class="task-step">2</span>Team policy</h3>
+          <div class="task-team" aria-hidden="true"><span><i class="fas fa-robot"></i></span><span><i class="fas fa-robot"></i></span><span><i class="fas fa-robot"></i></span></div>
+          <p class="task-node-main">Next navigation objective<br>for each robot</p>
+          <p class="task-node-note">Independent, distributed,<br>or centralized coordination</p>
+          <div class="task-feedback"><span aria-hidden="true">↻</span> Observe → act → observe</div>
+          <span class="task-arrow" aria-hidden="true">→</span>
+        </li>
+        <li class="task-node">
+          <h3><span class="task-step">3</span>Detection reports</h3>
+          <div class="task-report"><span class="task-report-label">JSON report</span><dl><dt>Timestamp</dt><dd><i>t</i></dd><dt>World location</dt><dd>(<i>x</i>, <i>y</i>, <i>z</i>)</dd></dl></div>
+          <p class="task-node-main">Visually detect a survivor<br>and report its location</p>
+          <span class="task-arrow" aria-hidden="true">→</span>
+        </li>
+        <li class="task-node task-evaluator">
+          <h3><span class="task-step">4</span>Evaluation</h3>
+          <div class="task-match" aria-hidden="true"><i class="fas fa-user"></i><span>↔</span><i class="fas fa-check-circle"></i></div>
+          <p class="task-node-main">Match reports to survivors</p>
+          <p class="task-node-note">Credit the earliest valid<br>report per survivor</p>
+        </li>
+      </ol>
+      <div class="task-boundaries">
+        <p class="task-input-restriction"><strong>Policy restrictions</strong>No prior maps, scene geometry, damage annotations, survivor counts/locations, or other simulator-only state. All coordination information comes from permitted inputs.</p>
+        <div class="task-ground-truth"><span class="task-truth-arrow" aria-hidden="true">↑</span><strong>Ground-truth annotations</strong><span>Evaluator only</span></div>
+      </div>
+      <figcaption>Robots share a global coordinate frame. Each survivor is credited once; duplicate reports and false positives receive no discovery credit.</figcaption>
+    </figure>
+  </div>
+</section>
 
 <!-- Pipeline. -->
-<section class="section">
+<section class="section" id="pipeline">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Scene Generation</h2>
     <div class="content has-text-justified">
@@ -198,7 +258,7 @@
 </section>
 
 <!-- Environments. -->
-<section class="section">
+<section class="section" id="environments">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Environments</h2>
     <div class="image-grid gallery">
@@ -248,18 +308,11 @@
   </div>
 </section>
 
-<!-- Task and metrics. -->
-<section class="section">
+<!-- Evaluation metrics. -->
+<section class="section" id="metrics">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Task and Metrics</h2>
+    <h2 class="title is-3">Evaluation Metrics</h2>
     <div class="content has-text-justified">
-      <p>
-        Within a mission time budget <i>T</i>, a team of ground or aerial robots must visually locate and report as many
-        people as possible. Each robot receives only onboard RGB-D observations and its estimated state; no prior map,
-        scene geometry, survivor count, or survivor location is available. Robots may act independently, communicate,
-        or share a centralized policy. Each detection is reported with a timestamp and estimated world-frame location,
-        and a survivor is credited at the earliest valid report from any robot.
-      </p>
       <p>
         Because finding survivors sooner matters, the primary metric is <b>Time-Integrated Progress</b> (TIP), the
         normalized area under the curve of survivors found over time:
@@ -278,7 +331,7 @@
 </section>
 
 <!-- Results. -->
-<section class="section">
+<section class="section" id="results">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Results</h2>
     <div class="content has-text-justified">
@@ -317,6 +370,45 @@
   </div>
 </section>
 
+<section class="section use-section" id="use" aria-labelledby="use-title">
+  <div class="container is-max-desktop has-text-centered">
+    <h2 class="title is-3" id="use-title">Use DisasterWorld</h2>
+    <ul class="use-list">
+      <li>
+        <span class="use-icon" aria-hidden="true"><i class="fas fa-robot"></i></span>
+        <p><strong>Evaluate your survivor-search system.</strong> Test perception, search planning, and multi-robot coordination across 120 environments spanning four disaster types, two localities, and three damage levels.</p>
+      </li>
+      <li>
+        <span class="use-icon" aria-hidden="true"><i class="fas fa-cubes"></i></span>
+        <p><strong>Use AirStack or bring your own stack.</strong> Scenes run in NVIDIA Isaac Sim. Use the provided AirStack configuration for aerial robots, or evaluate your own robot with its model, sensors, and autonomy stack.</p>
+      </li>
+      <li>
+        <span class="use-icon" aria-hidden="true"><i class="fas fa-random"></i></span>
+        <p><strong>Generate additional search tasks.</strong> Sample new survivor configurations on fixed damaged geometry without rebuilding the scene, enabling repeated experiments in the same environment.</p>
+      </li>
+      <li>
+        <span class="use-icon" aria-hidden="true"><i class="fas fa-comments"></i></span>
+        <p><strong>Get help or report a problem.</strong> Reach out or raise an issue if you encounter any problems.</p>
+      </li>
+    </ul>
+    <!-- TODO: add href URLs and remove aria-disabled when resources are released. -->
+    <div class="resource-grid">
+      <a class="resource-card" role="link" aria-disabled="true">
+        <span class="resource-card-icon" aria-hidden="true"><i class="fab fa-github"></i></span>
+        <span><strong>Code</strong><small>Procedural scene generation and survivor configuration tools.</small></span>
+      </a>
+      <a class="resource-card" role="link" aria-disabled="true">
+        <span class="resource-card-icon" aria-hidden="true"><i class="fas fa-database"></i></span>
+        <span><strong>Dataset</strong><small>USD scenes and JSON annotations for 120 search environments.</small></span>
+      </a>
+      <a class="resource-card" href="https://docs.theairlab.org/" target="_blank" rel="noopener noreferrer">
+        <span class="resource-card-icon" aria-hidden="true"><i class="fas fa-book"></i></span>
+        <span><strong>AirStack Documentation</strong><small>Installation, ROS 2 interfaces, and aerial-robot simulation in Isaac Sim.</small></span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- BibTeX. -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
@@ -346,18 +438,7 @@
 </footer>
 
 <!-- Lightbox: click a figure to view it full screen; click anywhere or press Esc to close. -->
-<dialog id="lightbox"><img alt=""></dialog>
-<script>
-  const lightbox = document.getElementById('lightbox');
-  document.addEventListener('click', e => {
-    if (lightbox.open) return lightbox.close();
-    const img = e.target.closest('figure img, .image-grid img');
-    if (!img) return;
-    lightbox.firstChild.src = img.src;
-    lightbox.firstChild.alt = img.alt;
-    lightbox.showModal();
-  });
-</script>
+<dialog id="lightbox" aria-label="Expanded image"><button type="button" class="lightbox-close" aria-label="Close expanded image">×</button><img alt=""></dialog>
 
 </body>
 </html>
