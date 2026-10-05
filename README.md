@@ -1,6 +1,6 @@
 # DisasterWorld project page
 
-Source for the DisasterWorld project page, served by GitHub Pages from `main`.
+Source for the DisasterWorld project page and rendered documentation. The repository is private and GitHub Pages is disabled; preview the site locally during preparation.
 Built on the [Nerfies](https://github.com/nerfies/nerfies.github.io) template (Bulma, no build step).
 
 ## Content
@@ -19,12 +19,24 @@ each); GitHub rejects files over 100 MB.
 ## Preview locally
 
 ```bash
-python3 -m http.server 8000   # then open http://localhost:8000
+python3 -m http.server 8000 --bind 127.0.0.1   # then open http://localhost:8000
 ```
 
 The page uses plain HTML, CSS, and JavaScript; no build step or dependency installation is needed.
 `static/js/index.js` provides a keyboard-accessible image viewer. The original pipeline figure,
 sim/real comparisons, and environment gallery remain visible without JavaScript.
+
+## Documentation
+
+Open `http://localhost:8000/docs/`, or use the Documentation button on the project page. This directory contains the rendered Material for MkDocs site with navigation, full-text search and a light/dark theme.
+
+Edit the source pages and `mkdocs.yml` in the sibling DisasterWorld code checkout, then rebuild:
+
+```bash
+../disasterworld/dw docs build --website-dir .
+```
+
+The build writes HTML, styles, JavaScript and the search index into `docs/`. Do not edit generated pages directly. This command updates only the local checkout; it does not enable Pages or publish the site.
 
 Before release, replace the video poster in `#video` with the project video and provide real
 Paper, arXiv, Code, and Dataset URLs. Release resource anchors at the top of the page and in `#use` currently
