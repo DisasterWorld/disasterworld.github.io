@@ -49,6 +49,13 @@ body {
 
 .teaser-grid figure {
   position: relative;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.teaser-grid figure:hover {
+  z-index: 1;
+  transform: scale(1.02);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .teaser-grid img {
@@ -103,85 +110,304 @@ figcaption,
   text-align: center;
 }
 
-.env-controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem 1rem;
-  margin-bottom: 0.75rem;
-}
-
-.env-controls .buttons {
-  margin-bottom: 0;
-}
-
 [hidden] {
   display: none !important;
 }
 
-.env-player {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #000;
-  border-radius: 6px;
-}
-
-.env-strip {
+/* Environments: four disaster buttons and a locality switch, then the player with its playlist beside it. */
+.env-picker {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-  margin-top: 4px;
+  grid-template-columns: 1fr 9rem;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
 }
 
-.env-strip button {
+.env-disasters {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.env-locales {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.env-disasters button,
+.env-locales button {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.1rem 0.5rem;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--muted);
+  font: inherit;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+}
+
+.env-disasters svg {
+  font-size: 2rem;
+}
+
+.env-locales button {
+  flex: 1;
+  flex-direction: row;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.env-disasters button:hover,
+.env-locales button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.env-disasters button:hover {
+  transform: translateY(-3px);
+}
+
+.env-disasters [aria-pressed="true"],
+.env-locales [aria-pressed="true"],
+.env-locales [aria-pressed="true"]:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Points from the chosen disaster down to the player. */
+.env-disasters [aria-pressed="true"]::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -1.35rem;
+  transform: translateX(-50%);
+  border: 0.6rem solid transparent;
+  border-top-color: var(--accent);
+}
+
+/* The player sets the height: it is a padded 16:9 box, and the playlist is pinned to its top and bottom and
+   scrolls, so the two always end flush. (Zen collapsed an earlier version that sized both by stretching.) */
+.env-viewer {
+  position: relative;
+}
+
+.env-screen {
+  position: relative;
+  width: 75%;
+  padding-top: 42.1875%;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #000;
+}
+
+.env-screen video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.env-clips {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: calc(25% - 0.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.env-clips button {
+  position: relative;
+  flex: none;
   padding: 0;
   border: 0;
-  background: none;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #000;
+  font: inherit;
   cursor: pointer;
-  opacity: 0.55;
 }
 
-.env-strip button:hover,
-.env-strip button.is-active {
+.env-clips img {
+  display: block;
+  width: 100%;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+}
+
+.env-clips button:hover img,
+.env-clips [aria-pressed="true"] img {
   opacity: 1;
 }
 
-.env-strip button.is-active {
-  outline: 3px solid var(--accent);
-  outline-offset: -3px;
-}
-
-.env-strip img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-}
-
-.env-strip span {
+/* Selection frame, drawn over the label so the progress fill never hides it. A lighter blue than the fill keeps
+   the frame visible where the fill meets it. */
+.env-clips [aria-pressed="true"]::after {
+  content: '';
   position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 3px solid #6cb4dd;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+/* Play badge on the clips not playing. */
+.env-clips button::before {
+  content: '\25B6';
+  position: absolute;
+  z-index: 1;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding-left: 0.2rem;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 0.85rem;
+}
+
+.env-clips [aria-pressed="true"]::before {
+  content: none;
+}
+
+/* The label's own background is the progress bar: a dark track that the accent fills from the left as the clip
+   plays. White text has strong contrast on both. z-index 0 keeps the fill (z-index -1) behind the text. */
+.env-clips .label {
+  position: absolute;
+  z-index: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 2px 6px;
-  background: rgba(0, 0, 0, 0.65);
+  padding: 0.35rem 0.7rem;
+  background: rgba(16, 24, 30, 0.8);
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   text-align: left;
 }
 
+.env-clips .bar {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s linear;
+}
+
+/* Survivor clips in one panel per disaster: the 4-clip panels take 2 of 5 columns and the 6-clip panels 3, two
+   rows each. With the tile gap twice the panel padding, every tile comes out the same width. On hover the panel
+   itself grows upwards by --tab, carrying the disaster name; nothing else moves. The growth is taller than the gap
+   between panels, so it may overlap the panel above. */
 .survivors {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: 0.9rem;
+}
+
+.survivor-group {
+  --tab: 1.6rem;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: 0.8rem;
+  padding: 0.4rem;
+}
+
+/* The panel's white body and outline: one rounded shape whose top edge moves up on hover, so the corners stay
+   rounded throughout. */
+.survivor-group::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--line);
+  transition: top 0.2s;
+}
+
+.survivor-group:nth-child(even) {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* The name sits in the band the panel grows into. */
+.survivor-group h3 {
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  display: flex;
+  align-items: flex-end;
+  height: var(--tab);
+  padding: 0 0.8rem;
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.25;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.survivor-group:hover::before {
+  top: calc(-1 * var(--tab));
+}
+
+.survivor-group:hover h3 {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .survivor-group::before {
+    top: calc(-1 * var(--tab));
+  }
+
+  .survivor-group h3 {
+    opacity: 1;
+  }
 }
 
 .survivors figure {
   position: relative;
   cursor: zoom-in;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.survivors figure:hover {
+  z-index: 1;
+  transform: scale(1.02);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 .survivors video {
@@ -191,15 +417,447 @@ figcaption,
   object-fit: cover;
 }
 
+/* Captions show on hover; touch screens, which cannot hover, always show them. */
 .survivors span {
   text-transform: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.survivors figure:hover span {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .survivors span {
+    opacity: 1;
+  }
+}
+
+/* Scene generation flow chart. Images have fixed heights and every card shrinks to fit them, so cards differ in
+   size but always have even padding. The generator is a 3 x 2 grid with cards centred in their cells; the gaps are
+   the gutters the routed arrows (svg.pipe-arrows, drawn by static/js/index.js) run through. */
+.pipeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem 2.75rem;
+}
+
+.pipe-arrows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: visible;
+  pointer-events: none;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.pipe-arrows marker path,
+.pipe-arrows circle {
+  fill: var(--accent);
+  stroke: none;
+}
+
+.pipe-stage {
+  padding: 0.75rem;
+  border-radius: 12px;
+}
+
+.pipe-stage h3 {
+  margin-bottom: 0.6rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.pipe-generator {
+  background: #eaf2fa;
+  box-shadow: 0 0 0 1px #b8cde0;
+}
+
+.pipe-generator h3 {
+  color: #1f4e79;
+}
+
+.pipe-simulator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background: #ebf5ed;
+  box-shadow: 0 0 0 1px #b5d3bb;
+}
+
+.pipe-simulator h3 {
+  align-self: flex-start;
+  margin-bottom: 0;
+  color: #2e6b3a;
+}
+
+.pipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  align-items: center;
+  justify-items: center;
+  gap: 1.75rem 2.75rem;
+}
+
+.pipe-card {
+  width: min-content;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.pipe-card h4 {
+  margin-bottom: 0.35rem;
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pipe-card .image-zoom {
+  width: auto;
+}
+
+.pipe-card img {
+  width: auto;
+  height: 8rem;
+  max-width: none;
+  border-radius: 4px;
+}
+
+/* A 2 x 2 grid of same-size thumbnails per card; --w is sized to each card's images so the cover-crop is slight. */
+.pipe-thumbs {
+  --w: 4.6rem;
+  display: grid;
+  grid-template-columns: repeat(2, var(--w));
+  gap: 0.3rem;
+}
+
+.pipe-card[data-node="damaged"] .pipe-thumbs {
+  --w: 5.6rem;
+}
+
+.pipe-thumbs img {
+  width: var(--w);
+  height: 4rem;
+  object-fit: cover;
+}
+
+.pipe-card[data-node="trajectories"] img {
+  height: 4rem;
+}
+
+.pipe-card[data-node="isaac"] img {
+  height: 10rem;
+}
+
+/* Layout card: "Disaster" and "Intensity" with symbols for their values, over the bottom-left of the image. */
+.pipe-layout {
+  position: relative;
+}
+
+.pipe-tags {
+  position: absolute;
+  left: 0.35rem;
+  bottom: 0.35rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 0.15rem 0.45rem;
+  padding: 0.25rem 0.45rem;
+  border-radius: 6px;
+  background: rgba(16, 24, 30, 0.82);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+.pipe-symbols {
+  display: flex;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+}
+
+/* Intensity: three signal-style symbols, low / medium / high, with the unused bars dimmed. */
+.pipe-levels {
+  display: flex;
+  justify-self: center;
+  gap: 0.4rem;
+}
+
+.pipe-levels > span {
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+  height: 0.75rem;
+}
+
+.pipe-levels b {
+  width: 3px;
+  height: 40%;
+  background: #fff;
+}
+
+.pipe-levels b:nth-child(2) {
+  height: 70%;
+}
+
+.pipe-levels b:nth-child(3) {
+  height: 100%;
+}
+
+.pipe-levels > span:first-child b:nth-child(n + 2),
+.pipe-levels > span:nth-child(2) b:nth-child(3) {
+  opacity: 0.3;
+}
+
+/* Column 3 spans both grid rows: a small Human placement on top, Final scenes filling the rest. */
+.pipe-col3 {
+  grid-column: 3;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.75rem;
+  align-self: stretch;
+}
+
+.pipe-card[data-node="human"] .pipe-thumbs {
+  --w: 3.6rem;
+}
+
+.pipe-card[data-node="human"] .pipe-thumbs img {
+  height: 3rem;
+}
+
+/* Wider than the renders, so crop from the bottom and keep their top-left labels. */
+.pipe-card[data-node="final"] .pipe-thumbs {
+  --w: 6.4rem;
+}
+
+.pipe-card[data-node="final"] .pipe-thumbs img {
+  height: 4.9rem;
+  object-position: top;
+}
+
+/* Disaster models: disaster columns, locality rows, map panels, then one compact legend. */
+.damage-grid {
+  display: grid;
+  grid-template-columns: auto repeat(4, minmax(0, 1fr));
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.damage-col {
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.damage-row {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.damage-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 2.5rem;
+  margin-top: 1.25rem;
+}
+
+.damage-legend > div {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.damage-legend b {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.legend-scale,
+.legend-marks {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* A continuous colour bar with each label inside its swatch: near-black text on light swatches, white on the
+   dark ones (.on-dark), whichever contrasts more. Every swatch is at least 4.6:1 (WCAG AA). */
+.legend-scale li {
+  min-width: 4.6rem;
+  padding: 0.2rem 0.5rem;
+  background: var(--c);
+  color: #111;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.legend-scale .on-dark {
+  color: #fff;
+}
+
+.legend-scale li:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.legend-scale li:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+.legend-marks {
+  gap: 0.4rem 1.25rem;
+}
+
+.legend-marks li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.legend-marks li::before {
+  content: '';
+  width: 1.8rem;
+  border-top: 3px solid var(--c);
+}
+
+.legend-marks .dashed::before {
+  border-top-style: dashed;
+}
+
+.legend-marks .outline::before {
+  width: 1rem;
+  height: 0.8rem;
+  border: 2px solid var(--c);
 }
 
 @media (max-width: 768px) {
   .teaser-grid,
-  .env-strip,
+  .env-disasters,
+  .survivor-group:nth-child(even) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .survivors {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Phones stack the cards in flow order and drop the routed arrows. */
+  .pipeline,
+  .pipe-grid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.75rem;
+  }
+
+  .pipe-arrows {
+    display: none;
+  }
+
+  .pipe-card[data-node="layout"] {
+    order: 1;
+  }
+
+  .pipe-card[data-node="model"] {
+    order: 2;
+  }
+
+  .pipe-card[data-node="damaged"] {
+    order: 3;
+  }
+
+  .pipe-col3 {
+    order: 4;
+    grid-column: auto;
+    grid-row: auto;
+    gap: 0.75rem;
+  }
+
+  .damage-col {
+    font-size: 0.75rem;
+  }
+
+  .damage-legend > div {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.3rem;
+    width: 100%;
+  }
+
+  .legend-scale {
+    flex-wrap: nowrap;
+    font-size: 0.7rem;
+  }
+
+  .legend-scale li {
+    flex: 1;
+    min-width: 0;
+    padding: 0.2rem 0.1rem;
+  }
+
+  .env-picker {
+    grid-template-columns: 1fr;
+  }
+
+  .env-disasters [aria-pressed="true"]::after {
+    content: none;
+  }
+
+  .env-locales {
+    flex-direction: row;
+  }
+
+  .env-screen {
+    width: 100%;
+    padding-top: 56.25%;
+  }
+
+  .env-clips {
+    position: static;
+    width: auto;
+    flex-direction: row;
+    margin-top: 0.6rem;
+    overflow: auto hidden;
+  }
+
+  .env-clips button {
+    flex: 0 0 42%;
+  }
+
+  .env-clips button::before {
+    top: 38%;
+    width: 1.8rem;
+    height: 1.8rem;
+    font-size: 0.65rem;
+  }
+
+  .env-clips .label {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .stats {

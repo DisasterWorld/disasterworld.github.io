@@ -37,11 +37,7 @@ body { color: var(--ink); font-size: 16px; line-height: 1.7; }
 .teaser-grid { gap: 8px; }
 .teaser-grid span { border-radius: 3px; top: 10px; left: 10px; font-size: .65rem; letter-spacing: .06em; }
 .caption, figcaption { color: var(--muted); font-size: .85rem; margin-top: .8rem; }
-.benchmark-overview { padding: 1rem 1.5rem 1rem; }
-.benchmark-overview > .container { padding: 1.7rem 2rem 1.2rem; background: #202e38; border-radius: 12px; color: white; }
-.overview-heading { display: flex; justify-content: space-between; align-items: center; gap: .6rem; padding-bottom: 1.6rem; }
-.overview-heading h2 { font-weight: 500; font-size: 1rem; }
-.overview-heading > span { font-size: .8rem; color: #c2cdd3; }
+.benchmark-overview { margin-top: 1rem; padding: 1.9rem 1.5rem 1.2rem; background: #202e38; color: white; }
 .stats { display: grid; grid-template-columns: 1.15fr .85fr .9fr 1.2fr; gap: 0; color: white; }
 .stats > div { padding: 0 1.5rem; text-align: left; border-left: 1px solid #4b575f; }
 .stats > div:first-child { padding-left: 0; border: 0; }
@@ -51,13 +47,12 @@ body { color: var(--ink); font-size: 16px; line-height: 1.7; }
 .stats .stat-total strong { color: #b7d5e8; }
 .benchmark-equation { display: flex; justify-content: center; flex-wrap: wrap; gap: .5rem .8rem; border-top: 1px solid #4b575f; margin-top: 1.5rem; padding-top: 1rem; color: #c2cdd3; font-size: .75rem; }
 .benchmark-equation b { color: #fff; }
-.video-placeholder { aspect-ratio: 16 / 9; display: grid; place-items: center; border-radius: 8px; overflow: hidden; background: linear-gradient(#16232c66, #16232cf5), url('../images/gallery/tornado_suburban_perspective.jpg') center / cover; }
-.video-symbol { display: grid; place-items: center; border: 1px solid #ffffffa3; border-radius: 50%; width: 70px; height: 70px; font-size: 1.4rem; padding-left: 4px; background: #16232c80; color: white; cursor: default; }
-.survivors { gap: .75rem; }
+.project-video { display: block; width: 100%; border-radius: 8px; background: #000; }
 .survivors video { border-radius: 6px; }
 .results-table { font-size: .95rem; }
 .results-table thead th { color: var(--ink); font-size: .82rem; background: var(--paper); }
-.use-section { background: var(--paper); }
+/* Only the Abstract and Use DisasterWorld sections are shaded. */
+#abstract, .use-section { background: #e6edf2; }
 .use-list { max-width: 920px; margin: 0 auto 2rem; text-align: left; }
 .use-list li { display: flex; align-items: flex-start; gap: 1rem; margin-top: 1.5rem; }
 .use-icon { color: var(--accent); flex: 0 0 1.5rem; font-size: 1.2rem; line-height: 1.7; text-align: center; }
@@ -123,9 +118,7 @@ body { color: var(--ink); font-size: 16px; line-height: 1.7; }
   .project-hero .publication-authors.is-size-6 { font-size: .75rem !important; }
   .teaser .hero-body { padding: 0 1.25rem 1rem; }
   .teaser-grid span { font-size: .6rem; top: 6px; left: 6px; padding: 0 5px; }
-  .benchmark-overview { padding: .5rem 1.25rem 1rem; }
-  .benchmark-overview > .container { padding: 1.4rem; }
-  .overview-heading { flex-direction: column; align-items: flex-start; gap: .25rem; }
+  .benchmark-overview { padding: 1.4rem 1.25rem 1rem; }
   .stats { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1rem; }
   .stats > div { padding: 0; border: 0; }
   .stats div:last-child:nth-child(odd) { grid-column: auto; }
@@ -133,7 +126,6 @@ body { color: var(--ink); font-size: 16px; line-height: 1.7; }
   .stats small { font-size: .7rem; }
   .stats span { font-size: .9rem; }
   .benchmark-equation { justify-content: flex-start; font-size: .7rem; }
-  .video-symbol { width: 50px; height: 50px; font-size: 1rem; }
   .use-list li { gap: .75rem; }
   .use-list p { font-size: .9rem; }
   .resource-grid { grid-template-columns: 1fr; }

@@ -12,8 +12,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="stylesheet" href="./static/css/redesign.css">
-  <!-- TODO: add static/images/favicon.svg, then uncomment. -->
-  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+  <!-- Favicon: the round-8 "crossroads" mark (shaded) from coasei/website/logo_candidates/svg/round8. -->
+  <link rel="icon" href="./static/images/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="./static/images/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="./static/images/apple-touch-icon.png">
 
   <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script defer src="./static/js/index.js"></script>
@@ -25,10 +27,10 @@
     <a class="wordmark" href="#">Disaster<span>World</span></a>
     <div class="nav-links">
       <a href="#abstract">Abstract</a>
+      <a href="#environments">Environments</a>
       <a href="#task">Task</a>
       <a href="#pipeline">Pipeline</a>
-      <a href="#environments">Environments</a>
-      <a href="#results">Results</a>
+      <a href="#evaluation">Evaluation</a>
       <a href="#use">Resources</a>
     </div>
   </div>
@@ -108,7 +110,7 @@
         <figure><img src="./static/images/teaser/tornado_real.jpg" alt="Tornado damage in Nebraska and Iowa"><span>Real</span></figure>
       </div>
       <p class="caption">
-        Simulated DisasterWorld scenes paired with real events. Photographs:
+        Photographs:
         <a href="https://www.goodmorningamerica.com/news/story/hurricane-ida-aftermath-climate-change-making-hurricanes-devastating-79727034">Hurricane Ida</a> (ABC News),
         <a href="https://www.reuters.com/news/picture/destruction-from-above-aerial-views-of-t-idUSRTSFYPKQ/">Turkey&ndash;Syria earthquake</a> (Reuters),
         <a href="https://www.mprnews.org/story/2020/08/04/huge-fire-damages-building-under-construction-in-downtown-st-paul">St. Paul building fire</a> (MPR News),
@@ -118,23 +120,30 @@
   </div>
 </section>
 
-<section class="benchmark-overview" id="benchmark" aria-labelledby="benchmark-title">
+<section class="benchmark-overview" id="benchmark" aria-label="Benchmark overview">
   <div class="container is-max-desktop">
-    <div class="overview-heading"><h2 id="benchmark-title">Benchmark Overview</h2><span>1 km × 1 km per scene</span></div>
     <div class="stats">
       <div><strong>4</strong><span>Disaster types</span><small>Hurricane · Tornado · Fire · Earthquake</small></div>
       <div><strong>2</strong><span>Localities</span><small>Urban · Suburban</small></div>
       <div><strong>3</strong><span>Damage levels</span><small>Low · Medium · High</small></div>
       <div class="stat-total"><strong>120</strong><span>Environments</span><small>24 scenes · 5 survivor configurations each</small></div>
     </div>
-    <p class="benchmark-equation"><span>4 disasters × 2 localities × 3 damage levels</span><span aria-hidden="true">→</span><span><b>24 scene geometries</b> × 5 survivor configurations</span><span aria-hidden="true">→</span><b>120 environments</b></p>
+    <p class="benchmark-equation"><span>4 disasters × 2 localities × 3 damage levels</span><span aria-hidden="true">→</span><span><b>24 scene geometries</b> × 5 survivor configurations</span><span aria-hidden="true">→</span><b>120 environments</b><span aria-hidden="true">·</span><span>1 km × 1 km per scene</span></p>
+  </div>
+</section>
+
+<!-- Project video: static/videos/disasterworld.mp4, compressed from showcase/final_drafts/clean_no_music.mp4. -->
+<section class="section video-section" id="video" aria-label="Video">
+  <div class="container is-max-desktop">
+    <video class="project-video" src="./static/videos/disasterworld.mp4" poster="./static/videos/disasterworld.jpg"
+           controls playsinline preload="metadata"></video>
   </div>
 </section>
 
 <!-- Abstract. -->
 <section class="section" id="abstract">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Abstract</h2>
+    <h2 class="title is-3">Abstract</h2>
     <div class="content has-text-justified">
       <p>
         After a large-scale disaster such as an earthquake or fire, responders must locate survivors across areas
@@ -157,12 +166,25 @@
   </div>
 </section>
 
-<!-- TODO: replace this poster with an accessible video/embed when the project video is ready. -->
-<section class="section video-section" id="video" aria-labelledby="video-title">
+<!-- Environments: disaster buttons and a locality switch above a player and its playlist (SCENES in static/js/index.js). -->
+<section class="section" id="environments">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered" id="video-title">Video</h2>
-    <div class="video-placeholder">
-      <button class="video-symbol" type="button" disabled aria-label="Play video"><i class="fas fa-play" aria-hidden="true"></i></button>
+    <h2 class="title is-3">Environments</h2>
+    <div class="env-picker">
+      <div class="env-disasters" id="env-disaster" role="group" aria-label="Disaster">
+        <button type="button" data-value="hurricane"><i class="fas fa-cloud-showers-heavy" aria-hidden="true"></i>Hurricane</button>
+        <button type="button" data-value="earthquake"><i class="fas fa-house-damage" aria-hidden="true"></i>Earthquake</button>
+        <button type="button" data-value="fire"><i class="fas fa-fire-alt" aria-hidden="true"></i>Fire</button>
+        <button type="button" data-value="tornado"><i class="fas fa-wind" aria-hidden="true"></i>Tornado</button>
+      </div>
+      <div class="env-locales" id="env-locale" role="group" aria-label="Locality">
+        <button type="button" data-value="urban"><i class="fas fa-city" aria-hidden="true"></i>Urban</button>
+        <button type="button" data-value="suburban"><i class="fas fa-home" aria-hidden="true"></i>Suburban</button>
+      </div>
+    </div>
+    <div class="env-viewer" id="env-viewer">
+      <div class="env-screen"><video id="env-player" muted playsinline controls preload="none" data-autoplay></video></div>
+      <div class="env-clips" id="env-clips" role="group" aria-label="Playlist"></div>
     </div>
   </div>
 </section>
@@ -225,12 +247,88 @@
         ready-to-use aerial-robot configuration built on AirStack.
       </p>
     </div>
-    <figure>
-      <img src="./static/images/pipeline.jpg" alt="Dataset generation and simulation pipeline">
-      <figcaption>
-        Assets, procedural layouts, disaster models, and survivor placements are combined to produce the final scenes,
-        which are simulated in Isaac Sim and AirStack.
-      </figcaption>
+    <!-- Images are cropped from the paper's figure (figures/pipeline_populated.png). The cards sit in a 3 x 2 grid and
+         static/js/index.js routes the arrows between them (data-node) in an SVG drawn over the figure. -->
+    <figure class="pipeline">
+      <div class="pipe-stage pipe-generator">
+        <h3>Dataset generator</h3>
+        <div class="pipe-grid">
+          <div class="pipe-card" data-node="assets">
+            <h4>Assets</h4>
+            <div class="pipe-thumbs">
+              <img src="./static/images/pipeline/asset_building.jpg" alt="Building asset" loading="lazy">
+              <img src="./static/images/pipeline/asset_house.jpg" alt="House asset" loading="lazy">
+              <img src="./static/images/pipeline/asset_props.jpg" alt="Tree and street-furniture assets" loading="lazy">
+              <img src="./static/images/pipeline/asset_car.jpg" alt="Car asset" loading="lazy">
+            </div>
+          </div>
+          <div class="pipe-card" data-node="damaged">
+            <h4>Damaged assets</h4>
+            <div class="pipe-thumbs">
+              <img src="./static/images/pipeline/damaged_building.jpg" alt="Burning building" loading="lazy">
+              <img src="./static/images/pipeline/damaged_house.jpg" alt="Collapsed house" loading="lazy">
+              <img src="./static/images/pipeline/damaged_props.jpg" alt="Fallen tree and toppled street furniture" loading="lazy">
+              <img src="./static/images/pipeline/damaged_car.jpg" alt="Overturned car" loading="lazy">
+            </div>
+          </div>
+          <div class="pipe-card" data-node="layout">
+            <h4>Layout generation</h4>
+            <div class="pipe-layout">
+              <img src="./static/images/pipeline/layout.jpg" alt="Urban and suburban layouts" loading="lazy">
+              <div class="pipe-tags">
+                <span>Disaster</span>
+                <span class="pipe-symbols"><i class="fas fa-cloud-showers-heavy" title="Hurricane"></i><i class="fas fa-house-damage" title="Earthquake"></i><i class="fas fa-fire-alt" title="Fire"></i><i class="fas fa-wind" title="Tornado"></i></span>
+                <span>Intensity</span>
+                <span class="pipe-levels">
+                  <span title="Low"><b></b><b></b><b></b></span><span title="Medium"><b></b><b></b><b></b></span><span title="High"><b></b><b></b><b></b></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="pipe-card" data-node="model">
+            <h4>Disaster model</h4>
+            <img src="./static/images/pipeline/disaster_model.jpg" alt="Damage fields over urban and suburban layouts" loading="lazy">
+          </div>
+          <!-- Column 3 spans both rows, so a small Human placement leaves Final scenes the rest of the height. -->
+          <div class="pipe-col3">
+            <div class="pipe-card" data-node="human">
+              <h4>Human placement</h4>
+              <div class="pipe-thumbs">
+                <img src="./static/images/pipeline/human_1.jpg" alt="Survivor beside a fallen tree" loading="lazy">
+                <img src="./static/images/pipeline/human_2.jpg" alt="Survivor under roof panels" loading="lazy">
+                <img src="./static/images/pipeline/human_3.jpg" alt="Survivor in an overturned car" loading="lazy">
+                <img src="./static/images/pipeline/human_4.jpg" alt="Survivor at a burning window" loading="lazy">
+              </div>
+            </div>
+            <div class="pipe-card" data-node="final">
+              <h4>Final scenes</h4>
+              <div class="pipe-thumbs">
+                <img src="./static/images/pipeline/final_urban_bev.jpg" alt="Urban scene from above" loading="lazy">
+                <img src="./static/images/pipeline/final_suburban_bev.jpg" alt="Suburban scene from above" loading="lazy">
+                <img src="./static/images/pipeline/final_urban_ego.jpg" alt="Urban scene at street level" loading="lazy">
+                <img src="./static/images/pipeline/final_suburban_ego.jpg" alt="Suburban scene at low altitude" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pipe-stage pipe-simulator">
+        <h3>Simulator</h3>
+        <div class="pipe-card" data-node="isaac">
+          <h4>Isaac Sim / AirStack</h4>
+          <img src="./static/images/pipeline/sim_isaac.jpg" alt="Scene running in Isaac Sim" loading="lazy">
+        </div>
+        <div class="pipe-card" data-node="trajectories">
+          <h4>Baseline trajectories</h4>
+          <img src="./static/images/pipeline/sim_trajectories.jpg" alt="Robot search trajectories over a scene" loading="lazy">
+        </div>
+      </div>
+      <svg class="pipe-arrows" aria-hidden="true">
+        <defs>
+          <marker id="pipe-head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9"
+                  markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z"/></marker>
+        </defs>
+      </svg>
     </figure>
   </div>
 </section>
@@ -256,39 +354,55 @@
           site conditions to produce facade failure, soft-storey failure, collapse, and settlement.</li>
       </ul>
     </div>
-    <figure>
-      <img src="./static/images/damage_models.jpg" alt="Damage maps for each disaster type" loading="lazy">
-      <figcaption>Damage at the highest intensity level for each disaster type, in suburban (top) and urban (bottom) layouts.</figcaption>
+    <!-- Map panels are cropped from the paper's figure (figures/disaster_layouts_l3.png); titles and legend are HTML. -->
+    <figure class="damage-figure">
+      <div class="damage-grid">
+        <span></span>
+        <span class="damage-col">Hurricane</span>
+        <span class="damage-col">Earthquake</span>
+        <span class="damage-col">Fire</span>
+        <span class="damage-col">Tornado</span>
+        <span class="damage-row">Suburban</span>
+        <img src="./static/images/damage/hurricane_suburban.jpg" alt="Hurricane damage, suburban" loading="lazy">
+        <img src="./static/images/damage/earthquake_suburban.jpg" alt="Earthquake damage, suburban" loading="lazy">
+        <img src="./static/images/damage/fire_suburban.jpg" alt="Fire damage, suburban" loading="lazy">
+        <img src="./static/images/damage/tornado_suburban.jpg" alt="Tornado damage, suburban" loading="lazy">
+        <span class="damage-row">Urban</span>
+        <img src="./static/images/damage/hurricane_urban.jpg" alt="Hurricane damage, urban" loading="lazy">
+        <img src="./static/images/damage/earthquake_urban.jpg" alt="Earthquake damage, urban" loading="lazy">
+        <img src="./static/images/damage/fire_urban.jpg" alt="Fire damage, urban" loading="lazy">
+        <img src="./static/images/damage/tornado_urban.jpg" alt="Tornado damage, urban" loading="lazy">
+      </div>
+      <div class="damage-legend">
+        <div><b>Damage</b>
+          <ol class="legend-scale">
+            <li style="--c: #b9c7ca">None</li><li style="--c: #f0c755">Light</li><li style="--c: #ed9137">Moderate</li>
+            <li style="--c: #d95535">Heavy</li><li class="on-dark" style="--c: #ac304c">Severe</li><li class="on-dark" style="--c: #492638">Destroyed</li>
+          </ol>
+        </div>
+        <div><b>Flood depth</b>
+          <ol class="legend-scale">
+            <li style="--c: #b9c7ca">Dry</li><li style="--c: #9dded1">&lt;0.5 m</li><li style="--c: #45bdd0">0.5&ndash;1 m</li>
+            <li class="on-dark" style="--c: #087fa4">1&ndash;2 m</li><li class="on-dark" style="--c: #124767">&gt;2 m</li>
+          </ol>
+        </div>
+        <div><b>Overlays</b>
+          <ul class="legend-marks">
+            <li style="--c: #57328c">Strong shaking</li>
+            <li class="dashed" style="--c: #644295">Weak shaking</li>
+            <li class="dashed" style="--c: #936000">Soft ground</li>
+            <li class="outline" style="--c: #126dac">Flooded house</li>
+          </ul>
+        </div>
+      </div>
     </figure>
-  </div>
-</section>
-
-<!-- Environments: pick a disaster and a locality; the strip lists that scene's clips (SCENES in static/js/index.js). -->
-<section class="section" id="environments">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Environments</h2>
-    <div class="env-controls">
-      <div class="buttons has-addons" id="env-disaster">
-        <button class="button is-small" data-value="hurricane">Hurricane</button>
-        <button class="button is-small" data-value="tornado">Tornado</button>
-        <button class="button is-small" data-value="fire">Fire</button>
-        <button class="button is-small" data-value="earthquake">Earthquake</button>
-      </div>
-      <div class="buttons has-addons" id="env-locale">
-        <button class="button is-small" data-value="urban">Urban</button>
-        <button class="button is-small" data-value="suburban">Suburban</button>
-      </div>
-    </div>
-    <video id="env-player" class="env-player" muted loop playsinline controls preload="none" data-autoplay></video>
-    <div class="env-strip" id="env-strip"></div>
-    <p class="caption">Scenes at the highest damage level, rendered in Isaac Sim. Flyovers play at 1.5&times; speed.</p>
   </div>
 </section>
 
 <!-- Survivors. -->
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Survivor Placement and Ground Truth</h2>
+    <h2 class="title is-3">Survivor Placement</h2>
     <div class="content has-text-justified">
       <p>
         Survivors are added after the damaged geometry is fixed, so new placements can be sampled without rebuilding
@@ -298,43 +412,48 @@
         scene element.
       </p>
     </div>
-    <div class="buttons has-addons is-centered" id="survivor-filter">
-      <button class="button is-small is-dark" data-value="">All</button>
-      <button class="button is-small" data-value="hurricane">Hurricane</button>
-      <button class="button is-small" data-value="tornado">Tornado</button>
-      <button class="button is-small" data-value="fire">Fire</button>
-      <button class="button is-small" data-value="earthquake">Earthquake</button>
-    </div>
+    <!-- Fixed layout: each disaster's clips sit in their own labelled panel, same order as the Environments buttons. -->
     <div class="survivors">
-      <figure data-disaster="hurricane"><video src="./static/videos/survivors/hurricane_urban_person_4.mp4" poster="./static/videos/survivors/hurricane_urban_person_4.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned by a fallen tree</span></figure>
-      <figure data-disaster="hurricane"><video src="./static/videos/survivors/hurricane_urban_person_7.mp4" poster="./static/videos/survivors/hurricane_urban_person_7.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Injured by flying glass</span></figure>
-      <figure data-disaster="hurricane"><video src="./static/videos/survivors/hurricane_urban_person_12.mp4" poster="./static/videos/survivors/hurricane_urban_person_12.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Lying among broken glass</span></figure>
-      <figure data-disaster="hurricane"><video src="./static/videos/survivors/hurricane_urban_person_16.mp4" poster="./static/videos/survivors/hurricane_urban_person_16.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Sitting injured in the street</span></figure>
-      <figure data-disaster="tornado"><video src="./static/videos/survivors/tornado_urban_person_1.mp4" poster="./static/videos/survivors/tornado_urban_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Inside an overturned van</span></figure>
-      <figure data-disaster="tornado"><video src="./static/videos/survivors/tornado_urban_l2_person_1.mp4" poster="./static/videos/survivors/tornado_urban_l2_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>In a vehicle</span></figure>
-      <figure data-disaster="tornado"><video src="./static/videos/survivors/tornado_urban_person_4.mp4" poster="./static/videos/survivors/tornado_urban_person_4.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned by a streetlight</span></figure>
-      <figure data-disaster="tornado"><video src="./static/videos/survivors/tornado_suburban_person_7.mp4" poster="./static/videos/survivors/tornado_suburban_person_7.jpg" muted loop playsinline preload="none" data-autoplay></video><span>On a debris pile</span></figure>
-      <figure data-disaster="tornado"><video src="./static/videos/survivors/tornado_suburban_person_1.mp4" poster="./static/videos/survivors/tornado_suburban_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Among scattered debris</span></figure>
-      <figure data-disaster="tornado"><video src="./static/videos/survivors/tornado_suburban_person_3.mp4" poster="./static/videos/survivors/tornado_suburban_person_3.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned under a panel</span></figure>
-      <figure data-disaster="fire"><video src="./static/videos/survivors/fire_urban_person_23.mp4" poster="./static/videos/survivors/fire_urban_person_23.jpg" muted loop playsinline preload="none" data-autoplay></video><span>At a window of a burning block</span></figure>
-      <figure data-disaster="fire"><video src="./static/videos/survivors/fire_urban_person_2.mp4" poster="./static/videos/survivors/fire_urban_person_2.jpg" muted loop playsinline preload="none" data-autoplay></video><span>On a balcony</span></figure>
-      <figure data-disaster="fire"><video src="./static/videos/survivors/fire_suburban_person_7.mp4" poster="./static/videos/survivors/fire_suburban_person_7.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Sheltering in a pool</span></figure>
-      <figure data-disaster="fire"><video src="./static/videos/survivors/fire_suburban_person_15.mp4" poster="./static/videos/survivors/fire_suburban_person_15.jpg" muted loop playsinline preload="none" data-autoplay></video><span>In a vehicle</span></figure>
-      <figure data-disaster="earthquake"><video src="./static/videos/survivors/earthquake_urban_person_1.mp4" poster="./static/videos/survivors/earthquake_urban_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Trapped under slabs</span></figure>
-      <figure data-disaster="earthquake"><video src="./static/videos/survivors/earthquake_urban_person_7.mp4" poster="./static/videos/survivors/earthquake_urban_person_7.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned by fallen debris</span></figure>
-      <figure data-disaster="earthquake"><video src="./static/videos/survivors/earthquake_urban_person_8.mp4" poster="./static/videos/survivors/earthquake_urban_person_8.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Beside fallen slabs</span></figure>
-      <figure data-disaster="earthquake"><video src="./static/videos/survivors/earthquake_suburban_person_1.mp4" poster="./static/videos/survivors/earthquake_suburban_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned under roof panels</span></figure>
-      <figure data-disaster="earthquake"><video src="./static/videos/survivors/earthquake_suburban_person_4.mp4" poster="./static/videos/survivors/earthquake_suburban_person_4.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Trapped inside a collapsed house</span></figure>
-      <figure data-disaster="earthquake"><video src="./static/videos/survivors/earthquake_suburban_person_3.mp4" poster="./static/videos/survivors/earthquake_suburban_person_3.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Partly beneath rubble</span></figure>
+      <div class="survivor-group">
+        <h3>Hurricane</h3>
+        <figure><video src="./static/videos/survivors/hurricane_urban_person_4.mp4" poster="./static/videos/survivors/hurricane_urban_person_4.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned by a fallen tree</span></figure>
+        <figure><video src="./static/videos/survivors/hurricane_urban_person_7.mp4" poster="./static/videos/survivors/hurricane_urban_person_7.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Lying among broken glass</span></figure>
+        <figure><video src="./static/videos/survivors/hurricane_urban_person_12.mp4" poster="./static/videos/survivors/hurricane_urban_person_12.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Lying among broken glass</span></figure>
+        <figure><video src="./static/videos/survivors/hurricane_urban_person_16.mp4" poster="./static/videos/survivors/hurricane_urban_person_16.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Sitting among broken glass</span></figure>
+      </div>
+      <div class="survivor-group">
+        <h3>Earthquake</h3>
+        <figure><video src="./static/videos/survivors/earthquake_urban_person_1.mp4" poster="./static/videos/survivors/earthquake_urban_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Trapped under slabs</span></figure>
+        <figure><video src="./static/videos/survivors/earthquake_urban_person_7.mp4" poster="./static/videos/survivors/earthquake_urban_person_7.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned by fallen debris</span></figure>
+        <figure><video src="./static/videos/survivors/earthquake_urban_person_8.mp4" poster="./static/videos/survivors/earthquake_urban_person_8.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned by fallen debris</span></figure>
+        <figure><video src="./static/videos/survivors/earthquake_suburban_person_1.mp4" poster="./static/videos/survivors/earthquake_suburban_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned under roof panels</span></figure>
+        <figure><video src="./static/videos/survivors/earthquake_suburban_person_4.mp4" poster="./static/videos/survivors/earthquake_suburban_person_4.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Lying on rubble pile</span></figure>
+        <figure><video src="./static/videos/survivors/earthquake_suburban_person_3.mp4" poster="./static/videos/survivors/earthquake_suburban_person_3.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned beneath rubble</span></figure>
+      </div>
+      <div class="survivor-group">
+        <h3>Fire</h3>
+        <figure><video src="./static/videos/survivors/fire_urban_person_23.mp4" poster="./static/videos/survivors/fire_urban_person_23.jpg" muted loop playsinline preload="none" data-autoplay></video><span>At a window</span></figure>
+        <figure><video src="./static/videos/survivors/fire_urban_person_2.mp4" poster="./static/videos/survivors/fire_urban_person_2.jpg" muted loop playsinline preload="none" data-autoplay></video><span>On a balcony</span></figure>
+        <figure><video src="./static/videos/survivors/fire_suburban_person_7.mp4" poster="./static/videos/survivors/fire_suburban_person_7.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Sheltering in a pool</span></figure>
+        <figure><video src="./static/videos/survivors/fire_suburban_person_15.mp4" poster="./static/videos/survivors/fire_suburban_person_15.jpg" muted loop playsinline preload="none" data-autoplay></video><span>In a vehicle</span></figure>
+      </div>
+      <div class="survivor-group">
+        <h3>Tornado</h3>
+        <figure><video src="./static/videos/survivors/tornado_urban_person_1.mp4" poster="./static/videos/survivors/tornado_urban_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Inside an overturned van</span></figure>
+        <figure><video src="./static/videos/survivors/tornado_urban_l2_person_1.mp4" poster="./static/videos/survivors/tornado_urban_l2_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>In a vehicle</span></figure>
+        <figure><video src="./static/videos/survivors/tornado_urban_person_4.mp4" poster="./static/videos/survivors/tornado_urban_person_4.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned by a streetlight</span></figure>
+        <figure><video src="./static/videos/survivors/tornado_suburban_person_7.mp4" poster="./static/videos/survivors/tornado_suburban_person_7.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned under a roof panel</span></figure>
+        <figure><video src="./static/videos/survivors/tornado_suburban_person_1.mp4" poster="./static/videos/survivors/tornado_suburban_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Lying among debris</span></figure>
+        <figure><video src="./static/videos/survivors/tornado_suburban_person_3.mp4" poster="./static/videos/survivors/tornado_suburban_person_3.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned under a roof panel</span></figure>
+      </div>
     </div>
-    <p class="caption">Click a clip to enlarge it.</p>
   </div>
 </section>
 
-<!-- Evaluation metrics. -->
-<section class="section" id="metrics">
+<!-- Evaluation: metrics, then results. -->
+<section class="section" id="evaluation">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Evaluation Metrics</h2>
+    <h2 class="title is-3">Evaluation</h2>
     <div class="content has-text-justified">
       <p>
         Because finding survivors sooner matters, the primary metric is <b>Time-Integrated Progress</b> (TIP), the
@@ -349,15 +468,6 @@
         <a href="https://arxiv.org/abs/2012.03912"><b>Progress</b></a>, the fraction of survivors found by the end of the mission, and <a href="https://arxiv.org/abs/2012.03912"><b>Progress-weighted Path
         Length</b></a> (PPL), which also rewards finding them with shorter routes.
       </p>
-    </div>
-  </div>
-</section>
-
-<!-- Results. -->
-<section class="section" id="results">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Results</h2>
-    <div class="content has-text-justified">
       <p>
         We evaluate 5 search policies spanning systematic coverage, geometric exploration, and semantic object-goal
         navigation on 24 tasks (one survivor arrangement per scene, 1,122 survivors in total), with teams of 8 aerial
@@ -372,9 +482,9 @@
         <tbody>
           <tr><td>Lawnmower coverage</td><td>0.273</td><td>0.938</td><td>0.000393</td></tr>
           <tr><td>Frontier exploration</td><td>2.286</td><td>3.721</td><td><b>0.001782</b></td></tr>
-          <tr><td>VLFM</td><td>1.915</td><td>2.702</td><td>0.001515</td></tr>
-          <tr><td>Co-NavGPT</td><td>0.077</td><td>0.105</td><td>0.000045</td></tr>
-          <tr><td>RAVEN</td><td><b>3.504</b></td><td><b>5.360</b></td><td>0.001443</td></tr>
+          <tr><td><a href="https://naoki.io/portfolio/vlfm" target="_blank" rel="noopener noreferrer">VLFM</a></td><td>1.915</td><td>2.702</td><td>0.001515</td></tr>
+          <tr><td><a href="https://sites.google.com/view/co-navgpt" target="_blank" rel="noopener noreferrer">Co-NavGPT</a></td><td>0.077</td><td>0.105</td><td>0.000045</td></tr>
+          <tr><td><a href="https://raven-semantic.github.io/" target="_blank" rel="noopener noreferrer">RAVEN</a></td><td><b>3.504</b></td><td><b>5.360</b></td><td>0.001443</td></tr>
         </tbody>
       </table>
     </div>

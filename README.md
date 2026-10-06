@@ -15,12 +15,16 @@ rg -n TODO index.html docs-src
 Images in `static/images/` are web-sized copies of the paper's figures (JPEG, at most 2400 px wide for
 full-width figures and 960 px for grid tiles). GitHub rejects files over 100 MB.
 
-Videos in `static/videos/` are re-encoded from the reviewed scene clips (`showcase/scene_videos/usable_clips.md`
+`static/videos/disasterworld.mp4` is the project video, compressed from `showcase/final_drafts/clean_no_music.mp4`
+in the coasei workspace (1080p H.264 CRF 27 capped at 1.6 Mb/s, AAC audio, `+faststart`; about 36 MB for 3 min), with
+a title-card poster `disasterworld.jpg`.
+
+The other videos in `static/videos/` are re-encoded from the reviewed scene clips (`showcase/scene_videos/usable_clips.md`
 in the coasei workspace): H.264 `.mp4`, no audio, `+faststart`, CRF 28, each with a `.jpg` poster taken at 1 s.
-Each clip plays forward then in reverse at the same speed, so the loop has no jump back to the first frame.
-`env/` clips are 1280 px wide (flyovers sped up 1.5x) and play in the Environments viewer;
-`survivors/` clips are 960 px wide. Name files `<disaster>_<locality>_<shot>`; the Environments clip list is the
-`SCENES` table in `static/js/index.js`.
+`env/` clips are 1280 px wide (flyovers sped up 1.5x) and play forward once each in the Environments playlist,
+which then moves on to the next clip. `survivors/` clips are 960 px wide and play forward then in reverse at the same
+speed, so their loop has no jump back to the first frame. Name files `<disaster>_<locality>_<shot>`; the
+Environments clip list is the `SCENES` table in `static/js/index.js`.
 
 ## Preview locally
 
@@ -29,8 +33,8 @@ python3 -m http.server 8000 --bind 127.0.0.1   # then open http://localhost:8000
 ```
 
 The project page uses plain HTML, CSS, and JavaScript. The rendered documentation is checked in, so viewing the site requires no build step or dependency installation.
-`static/js/index.js` provides a keyboard-accessible image viewer. The original pipeline figure,
-sim/real comparisons, and environment gallery remain visible without JavaScript.
+`static/js/index.js` provides a keyboard-accessible image viewer, the Environments player and playlist, and the
+scene-generation arrows; without JavaScript the text, figures and survivor clips still show, but those three do not.
 
 ## Documentation
 
