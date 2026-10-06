@@ -7,10 +7,12 @@
 .content p, .content li { line-height: 1.7; }
 .highlight pre { font-size: .83rem; line-height: 1.65; }
 .admonition.maintainer-todo {
-  border-color: #8b75b3;
-  background: rgba(116, 98, 167, .08);
+  --color-admonition-title: var(--color-brand-primary);
+  --color-admonition-title-background: var(--color-background-hover);
+  border-color: var(--color-brand-primary);
+  background: var(--color-background-secondary);
 }
 .admonition.maintainer-todo > .admonition-title {
-  background: rgba(116, 98, 167, .1);
+  background: var(--color-admonition-title-background);
 }
-.admonition.maintainer-todo > .admonition-title::before { background-color: #8b75b3; }
+.admonition.maintainer-todo > .admonition-title::before { background-color: var(--color-brand-primary); }
