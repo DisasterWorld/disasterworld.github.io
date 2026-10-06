@@ -263,29 +263,25 @@
   </div>
 </section>
 
-<!-- Environments. -->
+<!-- Environments: pick a disaster and a locality; the strip lists that scene's clips (SCENES in static/js/index.js). -->
 <section class="section" id="environments">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Environments</h2>
-    <div class="image-grid gallery">
-      <img src="./static/images/gallery/hurricane_suburban_closeup_1.jpg" alt="Hurricane, suburban" loading="lazy">
-      <img src="./static/images/gallery/hurricane_suburban_people_1.jpg" alt="Hurricane, suburban, survivors" loading="lazy">
-      <img src="./static/images/gallery/hurricane_suburban_people_2.jpg" alt="Hurricane, suburban, survivors" loading="lazy">
-      <img src="./static/images/gallery/hurricane_urban.jpg" alt="Hurricane, urban" loading="lazy">
-      <img src="./static/images/gallery/tornado_suburban_people.jpg" alt="Tornado, suburban, survivors" loading="lazy">
-      <img src="./static/images/gallery/tornado_suburban_perspective.jpg" alt="Tornado, suburban" loading="lazy">
-      <img src="./static/images/gallery/tornado_suburban_debris.jpg" alt="Tornado, suburban debris" loading="lazy">
-      <img src="./static/images/gallery/tornado_urban_1.jpg" alt="Tornado, urban" loading="lazy">
-      <img src="./static/images/gallery/fire_suburban_people.jpg" alt="Fire, suburban, survivors" loading="lazy">
-      <img src="./static/images/gallery/fire_urban_brownstone.jpg" alt="Fire, urban brownstone" loading="lazy">
-      <img src="./static/images/gallery/fire_urban_burnt_down.jpg" alt="Fire, urban, burnt down" loading="lazy">
-      <img src="./static/images/gallery/fire_urban_people.jpg" alt="Fire, urban, survivors" loading="lazy">
-      <img src="./static/images/gallery/earthquake_suburban.jpg" alt="Earthquake, suburban" loading="lazy">
-      <img src="./static/images/gallery/earthquake_suburban_people.jpg" alt="Earthquake, suburban, survivors" loading="lazy">
-      <img src="./static/images/gallery/earthquake_urban.jpg" alt="Earthquake, urban" loading="lazy">
-      <img src="./static/images/gallery/earthquake_urban_1.jpg" alt="Earthquake, urban" loading="lazy">
+    <div class="env-controls">
+      <div class="buttons has-addons" id="env-disaster">
+        <button class="button is-small" data-value="hurricane">Hurricane</button>
+        <button class="button is-small" data-value="tornado">Tornado</button>
+        <button class="button is-small" data-value="fire">Fire</button>
+        <button class="button is-small" data-value="earthquake">Earthquake</button>
+      </div>
+      <div class="buttons has-addons" id="env-locale">
+        <button class="button is-small" data-value="urban">Urban</button>
+        <button class="button is-small" data-value="suburban">Suburban</button>
+      </div>
     </div>
-    <p class="caption">Rows from top: hurricane, tornado, fire, earthquake, across urban and suburban scenes.</p>
+    <video id="env-player" class="env-player" muted loop playsinline controls preload="none" data-autoplay></video>
+    <div class="env-strip" id="env-strip"></div>
+    <p class="caption">Scenes at the highest damage level, rendered in Isaac Sim. Flyovers play at 1.5&times; speed.</p>
   </div>
 </section>
 
@@ -302,15 +298,36 @@
         scene element.
       </p>
     </div>
-    <div class="image-grid survivors">
-      <img src="./static/images/survivors/fire_rubble.jpg" alt="Survivor near fire and rubble" loading="lazy">
-      <img src="./static/images/survivors/fire_rooftop.jpg" alt="Survivor on a burning rooftop" loading="lazy">
-      <img src="./static/images/survivors/flood.jpg" alt="Survivor in floodwater" loading="lazy">
-      <img src="./static/images/survivors/legs_rubble.jpg" alt="Survivor partly beneath rubble" loading="lazy">
-      <img src="./static/images/survivors/toppled_car.jpg" alt="Survivor inside an overturned vehicle" loading="lazy">
-      <img src="./static/images/survivors/upper_body_rubble.jpg" alt="Survivor partly beneath rubble" loading="lazy">
+    <div class="buttons has-addons is-centered" id="survivor-filter">
+      <button class="button is-small is-dark" data-value="">All</button>
+      <button class="button is-small" data-value="hurricane">Hurricane</button>
+      <button class="button is-small" data-value="tornado">Tornado</button>
+      <button class="button is-small" data-value="fire">Fire</button>
+      <button class="button is-small" data-value="earthquake">Earthquake</button>
     </div>
-    <p class="caption">Survivors near fire, in floodwater, beneath rubble, and inside an overturned vehicle.</p>
+    <div class="survivors">
+      <figure data-disaster="hurricane"><video src="./static/videos/survivors/hurricane_urban_person_4.mp4" poster="./static/videos/survivors/hurricane_urban_person_4.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned by a fallen tree</span></figure>
+      <figure data-disaster="hurricane"><video src="./static/videos/survivors/hurricane_urban_person_7.mp4" poster="./static/videos/survivors/hurricane_urban_person_7.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Injured by flying glass</span></figure>
+      <figure data-disaster="hurricane"><video src="./static/videos/survivors/hurricane_urban_person_12.mp4" poster="./static/videos/survivors/hurricane_urban_person_12.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Lying among broken glass</span></figure>
+      <figure data-disaster="hurricane"><video src="./static/videos/survivors/hurricane_urban_person_16.mp4" poster="./static/videos/survivors/hurricane_urban_person_16.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Sitting injured in the street</span></figure>
+      <figure data-disaster="tornado"><video src="./static/videos/survivors/tornado_urban_person_1.mp4" poster="./static/videos/survivors/tornado_urban_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Inside an overturned van</span></figure>
+      <figure data-disaster="tornado"><video src="./static/videos/survivors/tornado_urban_l2_person_1.mp4" poster="./static/videos/survivors/tornado_urban_l2_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>In a vehicle</span></figure>
+      <figure data-disaster="tornado"><video src="./static/videos/survivors/tornado_urban_person_4.mp4" poster="./static/videos/survivors/tornado_urban_person_4.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned by a streetlight</span></figure>
+      <figure data-disaster="tornado"><video src="./static/videos/survivors/tornado_suburban_person_7.mp4" poster="./static/videos/survivors/tornado_suburban_person_7.jpg" muted loop playsinline preload="none" data-autoplay></video><span>On a debris pile</span></figure>
+      <figure data-disaster="tornado"><video src="./static/videos/survivors/tornado_suburban_person_1.mp4" poster="./static/videos/survivors/tornado_suburban_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Among scattered debris</span></figure>
+      <figure data-disaster="tornado"><video src="./static/videos/survivors/tornado_suburban_person_3.mp4" poster="./static/videos/survivors/tornado_suburban_person_3.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned under a panel</span></figure>
+      <figure data-disaster="fire"><video src="./static/videos/survivors/fire_urban_person_23.mp4" poster="./static/videos/survivors/fire_urban_person_23.jpg" muted loop playsinline preload="none" data-autoplay></video><span>At a window of a burning block</span></figure>
+      <figure data-disaster="fire"><video src="./static/videos/survivors/fire_urban_person_2.mp4" poster="./static/videos/survivors/fire_urban_person_2.jpg" muted loop playsinline preload="none" data-autoplay></video><span>On a balcony</span></figure>
+      <figure data-disaster="fire"><video src="./static/videos/survivors/fire_suburban_person_7.mp4" poster="./static/videos/survivors/fire_suburban_person_7.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Sheltering in a pool</span></figure>
+      <figure data-disaster="fire"><video src="./static/videos/survivors/fire_suburban_person_15.mp4" poster="./static/videos/survivors/fire_suburban_person_15.jpg" muted loop playsinline preload="none" data-autoplay></video><span>In a vehicle</span></figure>
+      <figure data-disaster="earthquake"><video src="./static/videos/survivors/earthquake_urban_person_1.mp4" poster="./static/videos/survivors/earthquake_urban_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Trapped under slabs</span></figure>
+      <figure data-disaster="earthquake"><video src="./static/videos/survivors/earthquake_urban_person_7.mp4" poster="./static/videos/survivors/earthquake_urban_person_7.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned by fallen debris</span></figure>
+      <figure data-disaster="earthquake"><video src="./static/videos/survivors/earthquake_urban_person_8.mp4" poster="./static/videos/survivors/earthquake_urban_person_8.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Beside fallen slabs</span></figure>
+      <figure data-disaster="earthquake"><video src="./static/videos/survivors/earthquake_suburban_person_1.mp4" poster="./static/videos/survivors/earthquake_suburban_person_1.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Pinned under roof panels</span></figure>
+      <figure data-disaster="earthquake"><video src="./static/videos/survivors/earthquake_suburban_person_4.mp4" poster="./static/videos/survivors/earthquake_suburban_person_4.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Trapped inside a collapsed house</span></figure>
+      <figure data-disaster="earthquake"><video src="./static/videos/survivors/earthquake_suburban_person_3.mp4" poster="./static/videos/survivors/earthquake_suburban_person_3.jpg" muted loop playsinline preload="none" data-autoplay></video><span>Partly beneath rubble</span></figure>
+    </div>
+    <p class="caption">Click a clip to enlarge it.</p>
   </div>
 </section>
 
@@ -435,8 +452,8 @@
   </div>
 </footer>
 
-<!-- Lightbox: click a figure to view it full screen; click anywhere or press Esc to close. -->
-<dialog id="lightbox" aria-label="Expanded image"><button type="button" class="lightbox-close" aria-label="Close expanded image">×</button><img alt=""></dialog>
+<!-- Lightbox: click a figure or survivor clip to view it full screen; close with the button, the backdrop, or Esc. -->
+<dialog id="lightbox" aria-label="Expanded image"><button type="button" class="lightbox-close" aria-label="Close expanded image">×</button><img alt=""><video muted loop playsinline controls></video></dialog>
 
 </body>
 </html>

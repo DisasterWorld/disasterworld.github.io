@@ -13,8 +13,14 @@ rg -n TODO index.html docs-src
 ```
 
 Images in `static/images/` are web-sized copies of the paper's figures (JPEG, at most 2400 px wide for
-full-width figures and 960 px for grid tiles). Keep videos in `static/videos/` small (H.264 `.mp4`, a few MB
-each); GitHub rejects files over 100 MB.
+full-width figures and 960 px for grid tiles). GitHub rejects files over 100 MB.
+
+Videos in `static/videos/` are re-encoded from the reviewed scene clips (`showcase/scene_videos/usable_clips.md`
+in the coasei workspace): H.264 `.mp4`, no audio, `+faststart`, CRF 28, each with a `.jpg` poster taken at 1 s.
+Each clip plays forward then in reverse at the same speed, so the loop has no jump back to the first frame.
+`env/` clips are 1280 px wide (flyovers sped up 1.5x) and play in the Environments viewer;
+`survivors/` clips are 960 px wide. Name files `<disaster>_<locality>_<shot>`; the Environments clip list is the
+`SCENES` table in `static/js/index.js`.
 
 ## Preview locally
 

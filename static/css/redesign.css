@@ -53,8 +53,8 @@ body { color: var(--ink); font-size: 16px; line-height: 1.7; }
 .benchmark-equation b { color: #fff; }
 .video-placeholder { aspect-ratio: 16 / 9; display: grid; place-items: center; border-radius: 8px; overflow: hidden; background: linear-gradient(#16232c66, #16232cf5), url('../images/gallery/tornado_suburban_perspective.jpg') center / cover; }
 .video-symbol { display: grid; place-items: center; border: 1px solid #ffffffa3; border-radius: 50%; width: 70px; height: 70px; font-size: 1.4rem; padding-left: 4px; background: #16232c80; color: white; cursor: default; }
-.gallery, .survivors { gap: .75rem; }
-.gallery img, .survivors img { border-radius: 6px; }
+.survivors { gap: .75rem; }
+.survivors video { border-radius: 6px; }
 .results-table { font-size: .95rem; }
 .results-table thead th { color: var(--ink); font-size: .82rem; background: var(--paper); }
 .use-section { background: var(--paper); }
@@ -108,7 +108,7 @@ body { color: var(--ink); font-size: 16px; line-height: 1.7; }
 .resource-card small { display: block; color: #e2edf4; font-size: .87rem; line-height: 1.65; }
 .footer { font-size: .85rem; background: var(--paper); }
 #lightbox { cursor: default; }
-#lightbox img { height: 92vh; }
+#lightbox img, #lightbox video { height: 92vh; }
 .lightbox-close { position: fixed; right: 1rem; top: 1rem; color: white; background: var(--ink); border: 1px solid white; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; font-size: 1.5rem; z-index: 1; }
 .image-zoom { display: block; padding: 0; border: 0; width: 100%; cursor: zoom-in; background: transparent; }
 @media (max-width: 1200px) { .nav-inner { padding: .9rem 1.5rem; } }

@@ -58,7 +58,8 @@ body {
   object-fit: cover;
 }
 
-.teaser-grid span {
+.teaser-grid span,
+.survivors span {
   position: absolute;
   top: 6px;
   left: 6px;
@@ -102,36 +103,101 @@ figcaption,
   text-align: center;
 }
 
-.image-grid {
-  display: grid;
-  gap: 4px;
+.env-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.75rem;
 }
 
-.image-grid img {
+.env-controls .buttons {
+  margin-bottom: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.env-player {
   display: block;
   width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-radius: 6px;
+}
+
+.env-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.env-strip button {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  opacity: 0.55;
+}
+
+.env-strip button:hover,
+.env-strip button.is-active {
+  opacity: 1;
+}
+
+.env-strip button.is-active {
+  outline: 3px solid var(--accent);
+  outline-offset: -3px;
+}
+
+.env-strip img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 
-.gallery {
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.gallery img {
-  aspect-ratio: 16 / 9;
+.env-strip span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2px 6px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 0.8rem;
+  text-align: left;
 }
 
 .survivors {
-  grid-template-columns: repeat(3, 1fr);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
 }
 
-.survivors img {
-  aspect-ratio: 4 / 3;
+.survivors figure {
+  position: relative;
+  cursor: zoom-in;
+}
+
+.survivors video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.survivors span {
+  text-transform: none;
 }
 
 @media (max-width: 768px) {
   .teaser-grid,
-  .gallery,
+  .env-strip,
   .survivors {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -169,8 +235,7 @@ figcaption,
   font-variant-numeric: tabular-nums;
 }
 
-figure img,
-.image-grid img {
+figure img {
   cursor: zoom-in;
 }
 
@@ -189,7 +254,8 @@ figure img,
 }
 
 /* Box fills the viewport; contain scales the image up or down to fit it. */
-#lightbox img {
+#lightbox img,
+#lightbox video {
   display: block;
   width: 96vw;
   height: 96vh;
