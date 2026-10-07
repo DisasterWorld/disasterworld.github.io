@@ -217,7 +217,9 @@ figcaption,
   height: 100%;
 }
 
-.env-clips {
+/* The playlist column: pinned to the player's top and bottom. The clip list scrolls; when it overflows, a bar
+   under it says so and scrolls it on (back to the top once at the end). */
+.env-side {
   position: absolute;
   top: 0;
   right: 0;
@@ -225,9 +227,46 @@ figcaption,
   width: calc(25% - 0.75rem);
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+}
+
+.env-clips {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
   gap: 0.6rem;
   overflow-y: auto;
   scrollbar-width: thin;
+}
+
+.env-more {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.35rem;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.env-more:hover {
+  background: #254c62;
+}
+
+.env-more svg {
+  transition: transform 0.2s;
+}
+
+.env-more.at-end svg {
+  transform: rotate(180deg);
 }
 
 .env-clips button {
@@ -354,8 +393,8 @@ figcaption,
   bottom: 0;
   left: 0;
   border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 0 0 1px var(--line);
+  background: #e6edf2;
+  box-shadow: 0 0 0 1px #cfdbe4;
   transition: top 0.2s;
 }
 
@@ -833,12 +872,23 @@ figcaption,
     padding-top: 56.25%;
   }
 
-  .env-clips {
+  .env-side {
     position: static;
     width: auto;
-    flex-direction: row;
     margin-top: 0.6rem;
+  }
+
+  .env-clips {
+    flex-direction: row;
     overflow: auto hidden;
+  }
+
+  .env-more svg {
+    transform: rotate(-90deg);
+  }
+
+  .env-more.at-end svg {
+    transform: rotate(90deg);
   }
 
   .env-clips button {

@@ -184,7 +184,12 @@
     </div>
     <div class="env-viewer" id="env-viewer">
       <div class="env-screen"><video id="env-player" muted playsinline controls preload="none" data-autoplay></video></div>
-      <div class="env-clips" id="env-clips" role="group" aria-label="Playlist"></div>
+      <div class="env-side">
+        <div class="env-clips" id="env-clips" role="group" aria-label="Playlist"></div>
+        <button type="button" class="env-more" id="env-more" hidden aria-label="Show more clips">
+          <span>More clips</span><i class="fas fa-chevron-down" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>
   </div>
 </section>

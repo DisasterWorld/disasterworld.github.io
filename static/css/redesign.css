@@ -51,8 +51,12 @@ body { color: var(--ink); font-size: 16px; line-height: 1.7; }
 .survivors video { border-radius: 6px; }
 .results-table { font-size: .95rem; }
 .results-table thead th { color: var(--ink); font-size: .82rem; background: var(--paper); }
-/* Only the Abstract and Use DisasterWorld sections are shaded. */
+/* Abstract and Use DisasterWorld are shaded light; Environments is dark blue, with light text and accents. */
 #abstract, .use-section { background: #e6edf2; }
+#environments { background: #1c3344; }
+#environments .title { color: #fff; }
+#environments .env-disasters [aria-pressed="true"]::after { border-top-color: #8fc3e3; }
+#environments .env-disasters [aria-pressed="true"], #environments .env-locales [aria-pressed="true"] { border-color: #8fc3e3; }
 .use-list { max-width: 920px; margin: 0 auto 2rem; text-align: left; }
 .use-list li { display: flex; align-items: flex-start; gap: 1rem; margin-top: 1.5rem; }
 .use-icon { color: var(--accent); flex: 0 0 1.5rem; font-size: 1.2rem; line-height: 1.7; text-align: center; }

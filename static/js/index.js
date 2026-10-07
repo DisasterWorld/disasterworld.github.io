@@ -39,24 +39,32 @@
     isIntersecting ? target.play().catch(() => {}) : target.pause()), {threshold: 0.25});
   document.querySelectorAll('video[data-autoplay]').forEach(v => onScreen.observe(v));
 
-  // Clips per scene: [file suffix, label]. Files are static/videos/env/<disaster>_<locality>_<suffix>.{mp4,jpg}.
+  // Clips per scene: [file suffix, label], most striking first (the hero shots of the showcase video).
+  // Files are static/videos/scenes/<disaster>_<locality>_<suffix>.{mp4,jpg}.
   const SCENES = {
     hurricane: {
-      urban: [['flyover_topdown_axis', 'Flyover'], ['pan_1', 'Pan'], ['pan_3', 'Pan']],
-      suburban: [['flyover_topdown_axis', 'Flyover'], ['pan_2', 'Pan'], ['building_1', 'Sunken house']],
+      urban: [['pan_6', 'Flooded street'], ['pan_1', 'Flooded street'], ['pan_3', 'Wind-damaged street']],
+      suburban: [['pan_2', 'Flooded streets'], ['flyover_topdown_axis', 'Flyover'], ['building_1', 'Sunken house'],
+                 ['pan_3', 'Flooded streets'], ['building_3', 'Flattened house']],
     },
     tornado: {
-      urban: [['pan_1', 'Pan'], ['pan_2', 'Pan'], ['vehicle_4', 'Overturned taxi']],
-      suburban: [['flyover_topdown_track', 'Flyover along the track'], ['pan_through_1', 'Pan along the track'],
-                 ['building_2', 'Destroyed house']],
+      urban: [['vehicle_4', 'Overturned taxi'], ['pan_2', 'Street view'], ['pan_1', 'Street view'],
+              ['vehicle_5', 'Overturned truck']],
+      suburban: [['pan_through_1', 'Tornado track'], ['flyover_topdown_track', 'Flyover along the track'],
+                 ['building_2', 'Flattened house'], ['pan_3', 'Edge of the track'], ['building_1', 'Flattened houses'],
+                 ['pan_1', 'Debris along the track']],
     },
     fire: {
-      urban: [['fire_hero_15', 'Burning'], ['fire_hero_26', 'Charred'], ['fire_hero_14', 'Burning']],
-      suburban: [['pan_steep_1', 'Low pan'], ['pan_1', 'Pan'], ['building_1', 'Building']],
+      urban: [['fire_hero_15', 'Burning building'], ['fire_hero_26', 'Charred building'],
+              ['fire_hero_14', 'Burning building'], ['fire_hero_18', 'Burning building']],
+      suburban: [['pan_steep_1', 'Aerial view'], ['pan_1', 'Aerial view'], ['building_1', 'Burnt house'],
+                 ['pan_3', 'Burnt streets'], ['building_2', 'Burnt house']],
     },
     earthquake: {
-      urban: [['flyover_topdown_axis', 'Flyover'], ['arc_at_1', 'Partial collapse'], ['building_1', 'Complete collapse']],
-      suburban: [['pan_1', 'Pan'], ['pan_2', 'Pan'], ['building_2', 'Collapsed house']],
+      urban: [['arc_at_1', 'Partial collapse'], ['pan_2', 'Street view'], ['building_1', 'Complete collapse'],
+              ['arc_at_3', 'Partial collapse'], ['building_c3', 'Rubble pile'], ['pan_turkey_T1_wide_pitch_slow', 'Flyover']],
+      suburban: [['building_4', 'Ground rupture'], ['building_2', 'Collapsed house'], ['pan_1', 'Aerial view'],
+                 ['pan_2', 'Aerial view'], ['cand_foundation_2', 'Foundation failure'], ['building_3', 'Collapsed house']],
     },
   };
   const env = {disaster: 'hurricane', locale: 'urban', clip: 0};
@@ -65,8 +73,9 @@
   const disasters = document.getElementById('env-disaster');
   const locales = document.getElementById('env-locale');
   const playlist = document.getElementById('env-clips');
+  const more = document.getElementById('env-more');
   const clips = () => SCENES[env.disaster][env.locale];
-  const envPath = suffix => `./static/videos/env/${env.disaster}_${env.locale}_${suffix}`;
+  const envPath = suffix => `./static/videos/scenes/${env.disaster}_${env.locale}_${suffix}`;
   const press = (group, value) => {
     for (const b of group.children) b.setAttribute('aria-pressed', b.dataset.value === value);
   };
@@ -107,7 +116,27 @@
     }));
     playlist.scrollTo(0, 0);
     playClip(0);
+    updateMore();
   }
+
+  // The "More clips" bar under the playlist: shown whenever the list overflows; at the end it flips to "Back to top".
+  const vertical = () => getComputedStyle(playlist).flexDirection === 'column';  // a row strip on phones
+  function updateMore() {
+    const overflow = vertical() ? playlist.scrollHeight > playlist.clientHeight + 1 : playlist.scrollWidth > playlist.clientWidth + 1;
+    const left = vertical() ? playlist.scrollHeight - playlist.clientHeight - playlist.scrollTop
+                            : playlist.scrollWidth - playlist.clientWidth - playlist.scrollLeft;
+    more.hidden = !overflow;
+    more.classList.toggle('at-end', left < 2);
+    more.firstElementChild.textContent = left < 2 ? 'Back to top' : 'More clips';
+  }
+  playlist.addEventListener('scroll', updateMore);
+  new ResizeObserver(updateMore).observe(playlist);
+  playlist.addEventListener('load', updateMore, true);
+  more.addEventListener('click', () => {
+    if (more.classList.contains('at-end')) return playlist.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    const step = playlist.children[0].getBoundingClientRect();
+    playlist.scrollBy(vertical() ? {top: step.height, behavior: 'smooth'} : {left: step.width, behavior: 'smooth'});
+  });
 
   // The playing clip's bar fills as it plays; at the end the next clip starts, wrapping to the first.
   player.addEventListener('timeupdate', () => {

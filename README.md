@@ -21,7 +21,7 @@ a title-card poster `disasterworld.jpg`.
 
 The other videos in `static/videos/` are re-encoded from the reviewed scene clips (`showcase/scene_videos/usable_clips.md`
 in the coasei workspace): H.264 `.mp4`, no audio, `+faststart`, CRF 28, each with a `.jpg` poster taken at 1 s.
-`env/` clips are 1280 px wide (flyovers sped up 1.5x) and play forward once each in the Environments playlist,
+`scenes/` clips are 1280 px wide (flyovers sped up 1.5x) and play forward once each in the Environments playlist,
 which then moves on to the next clip. `survivors/` clips are 960 px wide and play forward then in reverse at the same
 speed, so their loop has no jump back to the first frame. Name files `<disaster>_<locality>_<shot>`; the
 Environments clip list is the `SCENES` table in `static/js/index.js`.
