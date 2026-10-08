@@ -43,22 +43,23 @@
   // Files are static/videos/scenes/<disaster>_<locality>_<suffix>.{mp4,jpg}.
   const SCENES = {
     hurricane: {
-      urban: [['pan_6', 'Flooded street'], ['pan_1', 'Flooded street'], ['pan_3', 'Wind-damaged street']],
-      suburban: [['pan_2', 'Flooded streets'], ['flyover_topdown_axis', 'Flyover'], ['building_1', 'Sunken house'],
-                 ['pan_3', 'Flooded streets'], ['building_3', 'Flattened house']],
+      urban: [['r11b_arc_2', 'Stranded cars'], ['pan_6', 'Flooded street'], ['pan_1', 'Flooded street'],
+              ['pan_3', 'Wind-damaged street'], ['r11_arc_3', 'Flooded intersection'], ['r11_arc_4', 'Flooded intersection']],
+      suburban: [['pan_2', 'Flooded streets'], ['r11_arc_2', 'Damaged houses'], ['building_3', 'Flattened house'],
+                 ['flyover_topdown_axis', 'Flyover'], ['building_1', 'Sunken house'], ['pan_3', 'Flooded streets']],
     },
     tornado: {
-      urban: [['vehicle_4', 'Overturned taxi'], ['pan_2', 'Street view'], ['pan_1', 'Street view'],
-              ['vehicle_5', 'Overturned truck']],
-      suburban: [['pan_through_1', 'Tornado track'], ['flyover_topdown_track', 'Flyover along the track'],
-                 ['building_2', 'Flattened house'], ['pan_3', 'Edge of the track'], ['building_1', 'Flattened houses'],
-                 ['pan_1', 'Debris along the track']],
+      urban: [['r11b_pan_1', 'Along the track'], ['vehicle_4', 'Overturned taxi'], ['vehicle_5', 'Overturned truck'],
+              ['r11c_overturned', 'Overturned cars']],
+      suburban: [['pan_1', 'Tornado track'], ['pan_through_1', 'Tornado track'], ['flyover_topdown_track', 'Flyover along the track'],
+                 ['building_2', 'Flattened house'], ['pan_3', 'Edge of the track']],
     },
     fire: {
       urban: [['fire_hero_15', 'Burning building'], ['fire_hero_26', 'Charred building'],
-              ['fire_hero_14', 'Burning building'], ['fire_hero_18', 'Burning building']],
+              ['fire_hero_14', 'Burning building'], ['fire_hero_18', 'Burning building'], ['fire_hero_28', 'Burning building'],
+              ['r11_pan_1', 'Street view']],
       suburban: [['pan_steep_1', 'Aerial view'], ['pan_1', 'Aerial view'], ['building_1', 'Burnt house'],
-                 ['pan_3', 'Burnt streets'], ['building_2', 'Burnt house']],
+                 ['pan_3', 'Burnt streets'], ['building_2', 'Burnt house'], ['r11_arc_2', 'Burnt block']],
     },
     earthquake: {
       urban: [['arc_at_1', 'Partial collapse'], ['pan_2', 'Street view'], ['building_1', 'Complete collapse'],
