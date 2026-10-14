@@ -43,29 +43,34 @@
   // Files are static/videos/scenes/<disaster>_<locality>_<suffix>.{mp4,jpg}.
   const SCENES = {
     hurricane: {
-      urban: [['r11b_arc_2', 'Stranded cars'], ['pan_6', 'Flooded street'], ['pan_1', 'Flooded street'],
-              ['pan_3', 'Wind-damaged street'], ['r11_arc_3', 'Flooded intersection'], ['r11_arc_4', 'Flooded intersection']],
+      urban: [['r11b_arc_2', 'Stranded cars'], ['pan_6', 'Flooded street'], ['person_6', 'Pinned under a tree'],
+              ['pan_3', 'Wind-damaged street'], ['r11_arc_3', 'Flooded intersection'],
+              ['person_13', 'Lying among broken glass'], ['r11_arc_4', 'Flooded intersection']],
       suburban: [['pan_2', 'Flooded streets'], ['r11_arc_2', 'Damaged houses'], ['building_3', 'Flattened house'],
-                 ['flyover_topdown_axis', 'Flyover'], ['building_1', 'Sunken house'], ['pan_3', 'Flooded streets']],
+                 ['flyover_topdown_axis', 'Flyover'], ['building_1', 'Sunken house'],
+                 ['person_1', 'Pinned under wood planks'], ['pan_3', 'Flooded streets']],
     },
     tornado: {
-      urban: [['r11b_pan_1', 'Along the track'], ['vehicle_4', 'Overturned taxi'], ['vehicle_5', 'Overturned truck'],
-              ['r11c_overturned', 'Overturned cars']],
-      suburban: [['pan_1', 'Tornado track'], ['pan_through_1', 'Tornado track'], ['flyover_topdown_track', 'Flyover along the track'],
-                 ['building_2', 'Flattened house'], ['pan_3', 'Edge of the track']],
+      urban: [['r11b_pan_1', 'Along the track'], ['person_5', 'Pinned by fallen bench'], ['vehicle_4', 'Overturned taxi'],
+              ['person_1', 'Inside an overturned van'], ['vehicle_5', 'Overturned truck'], ['r11c_overturned', 'Overturned cars']],
+      suburban: [['pan_1', 'Tornado track'], ['person_2', 'Among fallen trees'], ['pan_through_1', 'Tornado track'],
+                 ['flyover_topdown_track', 'Flyover along the track'], ['person_4', 'Pinned under boards'],
+                 ['building_2', 'Flattened house'], ['person_8', 'Pinned under a panel'], ['pan_3', 'Edge of the track']],
     },
     fire: {
-      urban: [['fire_hero_15', 'Burning building'], ['fire_hero_26', 'Charred building'],
-              ['fire_hero_14', 'Burning building'], ['fire_hero_18', 'Burning building'], ['fire_hero_28', 'Burning building'],
-              ['r11_pan_1', 'Street view']],
-      suburban: [['pan_steep_1', 'Aerial view'], ['pan_1', 'Aerial view'], ['building_1', 'Burnt house'],
+      urban: [['fire_hero_15', 'Burning building'], ['person_23', 'At a window'], ['fire_hero_26', 'Charred building'],
+              ['person_2', 'On a balcony'], ['fire_hero_18', 'Burning building'], ['fire_hero_28', 'Burning building']],
+      suburban: [['pan_steep_1', 'Aerial view'], ['r13_blockage', 'Burning roadblock'], ['person_7', 'Sheltering in a pool'],
+                 ['pan_1', 'Aerial view'], ['r13_blockage_pan', 'Approaching the roadblock'], ['building_1', 'Burnt house'],
                  ['pan_3', 'Burnt streets'], ['building_2', 'Burnt house'], ['r11_arc_2', 'Burnt block']],
     },
     earthquake: {
-      urban: [['arc_at_1', 'Partial collapse'], ['pan_2', 'Street view'], ['building_1', 'Complete collapse'],
-              ['arc_at_3', 'Partial collapse'], ['building_c3', 'Rubble pile'], ['pan_turkey_T1_wide_pitch_slow', 'Flyover']],
+      urban: [['arc_at_1', 'Partial collapse'], ['pan_2', 'Street view'], ['person_4', 'Pinned under beams'],
+              ['building_1', 'Complete collapse'], ['person_9', 'Pinned under bricks'], ['building_c3', 'Rubble pile'],
+              ['pan_turkey_T1_wide_pitch_slow', 'Flyover']],
       suburban: [['building_4', 'Ground rupture'], ['building_2', 'Collapsed house'], ['pan_1', 'Aerial view'],
-                 ['pan_2', 'Aerial view'], ['cand_foundation_2', 'Foundation failure'], ['building_3', 'Collapsed house']],
+                 ['person_4', 'Lying on rubble pile'], ['pan_2', 'Aerial view'], ['cand_foundation_2', 'Foundation failure'],
+                 ['person_3', 'Pinned beneath rubble'], ['building_3', 'Collapsed house']],
     },
   };
   const env = {disaster: 'hurricane', locale: 'urban', clip: 0};
