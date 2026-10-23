@@ -1,6 +1,6 @@
 # DisasterWorld project page
 
-Source for the DisasterWorld project page and documentation, including the documentation theme and build configuration. The repository is private and GitHub Pages is disabled; preview the site locally during preparation.
+Source for the DisasterWorld project page and documentation, including the documentation theme and build configuration. GitHub Pages serves the `main` branch root; `.nojekyll` keeps Jekyll from dropping the documentation's `_static/` directory.
 Built on the [Nerfies](https://github.com/nerfies/nerfies.github.io) template (Bulma, no build step).
 
 ## Content
@@ -50,13 +50,12 @@ python3 -m venv .venv
 
 The build writes HTML, styles, JavaScript and the search index into `docs/`. Refresh `http://localhost:8000/docs/` after rebuilding. Commit the source changes and regenerated `docs/` together; do not edit generated pages directly. Building the website does not require the DisasterWorld runtime or AirStack.
 
-The documentation workflow checks the build and provides a downloadable artifact. GitHub Pages remains disabled; builds do not publish the site.
+The documentation workflow checks the build and provides a downloadable artifact; it does not publish. GitHub Pages serves the committed `docs/`.
 
-Before release, replace the video poster in `#video` with the project video and provide real
-Paper, arXiv, Code, and Dataset URLs. Release resource anchors at the top of the page and in `#use` currently
-have no `href` and are marked `aria-disabled="true"`; add the URLs and remove that attribute when
-released. The AirStack Documentation card links to the official docs. The video poster contains only
-an inactive play button.
+The paper, code and dataset are not released yet. Their anchors at the top of the page and in `#use` have no `href`,
+are marked `aria-disabled="true"` and carry a "Coming soon" badge (`.soon`); on release, add the URLs and remove the
+attribute and badge. The docs mark the same gaps with `Coming soon` admonitions, and keep the maintainer notes as
+MyST `%` comments that do not render. The AirStack Documentation card links to the official docs.
 
 The Task Formulation section uses a static, responsive flow figure for observations, team policy,
 detection reports, and evaluation. It follows `disaster-dataset/overleaf/sections/task.tex` and the detection

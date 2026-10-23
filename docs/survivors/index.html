@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
-    <link rel="stylesheet" type="text/css" href="../_static/extra.css?v=30135b65" />
+    <link rel="stylesheet" type="text/css" href="../_static/extra.css?v=b8106e3a" />
     
     
 
@@ -330,10 +330,6 @@
 </div>
 <p>Posed assets must have a valid default prim and an origin compatible with the candidate translation. Verification applies to the full posed body at that candidate. The generator trusts publisher verification metadata; it does not run a physics clearance check. Candidate locations must also avoid mutually overlapping bodies when sampled together. The current SHA checks the root geometry layer, so the publisher must freeze referenced dependencies as well.</p>
 <p>The generator writes a USD scene that references the selected geometry and adds the sampled survivors, along with ground truth and a task manifest.</p>
-<div class="maintainer-todo admonition">
-<p class="admonition-title">Maintainer TODO — complete placement generation</p>
-<p>Export scene-specific candidates and posed assets with the dataset bundle. The current generator resamples prepared candidates; it does not yet run the research placement pipeline on arbitrary geometry. Add that pipeline and validate collision clearance if unrestricted new locations or poses are required for release.</p>
-</div>
 </section>
 
         </article>

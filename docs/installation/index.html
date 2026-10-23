@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
-    <link rel="stylesheet" type="text/css" href="../_static/extra.css?v=30135b65" />
+    <link rel="stylesheet" type="text/css" href="../_static/extra.css?v=b8106e3a" />
     
     
 
@@ -303,14 +303,14 @@
 </pre></div>
 </div>
 <p>Setup creates a small Python virtual environment, obtains pinned AirStack/MIGHTY/module checkouts in <code class="docutils literal notranslate"><span class="pre">.runtime</span></code>, registers modules using the AirStack CLI, builds isolated container images and builds the ROS overlay. Optional CMU credentials are prompted interactively, with Skip as the default. <code class="docutils literal notranslate"><span class="pre">./dw</span> <span class="pre">setup</span> <span class="pre">--public-only</span></code> skips those prompts. Credentials and caches stay in ignored local directories. Setup never resets tracked changes in an existing checkout.</p>
-<div class="maintainer-todo admonition">
-<p class="admonition-title">Maintainer TODO — public repository access</p>
-<p>Make the release repositories public when ready. During private preparation, setup requires GitHub access to the repositories even when AirLab credentials are skipped.</p>
+<div class="coming-soon admonition">
+<p class="admonition-title">Coming soon</p>
+<p>The DisasterWorld repository is not public yet; the clone command above will work once the code is released.</p>
 </div>
 <p>The first build and model downloads need internet and substantial disk space; exact resource requirements depend on the selected policies and scenes. Inference and simulation may share GPU 0. Two GPUs are not a requirement, but a single GPU must fit the simulator and selected models. Smaller fleets and Frontier/Lawnmower are useful starting points.</p>
-<div class="maintainer-todo admonition">
-<p class="admonition-title">Maintainer TODO — dataset download</p>
-<p>Set the archive URL and SHA-256 in the default configuration when the bundle is published.</p>
+<div class="coming-soon admonition">
+<p class="admonition-title">Coming soon</p>
+<p>The scene bundle is not published yet; <code class="docutils literal notranslate"><span class="pre">./dw</span> <span class="pre">dataset</span> <span class="pre">download</span></code> will work once the dataset is released.</p>
 </div>
 <p>Download the scenes with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./dw<span class="w"> </span>dataset<span class="w"> </span>download

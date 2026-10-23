@@ -42,8 +42,5 @@ Posed assets must have a valid default prim and an origin compatible with the ca
 
 The generator writes a USD scene that references the selected geometry and adds the sampled survivors, along with ground truth and a task manifest.
 
-```{admonition} Maintainer TODO — complete placement generation
-:class: maintainer-todo
-
-Export scene-specific candidates and posed assets with the dataset bundle. The current generator resamples prepared candidates; it does not yet run the research placement pipeline on arbitrary geometry. Add that pipeline and validate collision clearance if unrestricted new locations or poses are required for release.
-```
+% Maintainer TODO — complete placement generation:
+% Export scene-specific candidates and posed assets with the dataset bundle. The current generator resamples prepared candidates; it does not yet run the research placement pipeline on arbitrary geometry. Add that pipeline and validate collision clearance if unrestricted new locations or poses are required for release.

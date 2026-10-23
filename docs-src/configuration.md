@@ -46,8 +46,5 @@ See [VLM API configuration](vlm-api.md) for a complete example and the supported
 
 `./dw run --dry-run` resolves the launch without starting containers. A completed run saves configuration, version pins, per-robot reports/trajectories, policy logs and container logs under `results_root`. Policies receive public bounds and observations; survivor ground truth is kept for the host evaluator. `./dw down` stops the current DisasterWorld project. Use distinct `runtime.project` and `network_subnet` values for simultaneous installations.
 
-```{admonition} Maintainer TODO — simulator validation
-:class: maintainer-todo
-
-Complete a frozen-scene end-to-end acceptance run. Verify sensor alignment, common timing, report frames and policy settings against the paper before release.
-```
+% Maintainer TODO — simulator validation:
+% Complete a frozen-scene end-to-end acceptance run. Verify sensor alignment, common timing, report frames and policy settings against the paper before release.

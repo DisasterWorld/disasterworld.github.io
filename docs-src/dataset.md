@@ -2,10 +2,13 @@
 
 The runtime loads local frozen USD scenes and requires no lab Nucleus access. Archives must contain `scenes/` at their root and regular files/directories only; external archive links and path traversal are rejected.
 
-```{admonition} Maintainer TODO — publish the bundle
-:class: maintainer-todo
+% Maintainer TODO — publish the bundle:
+% Fill in the public archive URL and SHA-256 in the default configuration after validating and publishing the bundle.
 
-Fill in the public archive URL and SHA-256 in the default configuration after validating and publishing the bundle.
+```{admonition} Coming soon
+:class: coming-soon
+
+The scene bundle is not published yet; it will be linked here when the dataset is released.
 ```
 
 Each scene has a manifest at `scenes/DISASTER/LOCALITY/level_N/manifest.json`:
@@ -34,8 +37,5 @@ Ground truth contains `world_frame: "world"` and a `survivors` array of objects 
 
 `geometry_file` must be people-free damaged geometry. It and `placement_candidates_file` are required only for [survivor-only generation](survivors.md).
 
-```{admonition} Maintainer TODO — placement assets
-:class: maintainer-todo
-
-Prepare the people-free geometry, posed survivor assets and verified placement candidates from the research dataset before publishing the bundle.
-```
+% Maintainer TODO — placement assets:
+% Prepare the people-free geometry, posed survivor assets and verified placement candidates from the research dataset before publishing the bundle.

@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
-    <link rel="stylesheet" type="text/css" href="../_static/extra.css?v=30135b65" />
+    <link rel="stylesheet" type="text/css" href="../_static/extra.css?v=b8106e3a" />
     
     
 
@@ -299,9 +299,9 @@
           <section id="dataset-bundles">
 <h1>Dataset bundles<a class="headerlink" href="#dataset-bundles" title="Link to this heading">¶</a></h1>
 <p>The runtime loads local frozen USD scenes and requires no lab Nucleus access. Archives must contain <code class="docutils literal notranslate"><span class="pre">scenes/</span></code> at their root and regular files/directories only; external archive links and path traversal are rejected.</p>
-<div class="maintainer-todo admonition">
-<p class="admonition-title">Maintainer TODO — publish the bundle</p>
-<p>Fill in the public archive URL and SHA-256 in the default configuration after validating and publishing the bundle.</p>
+<div class="coming-soon admonition">
+<p class="admonition-title">Coming soon</p>
+<p>The scene bundle is not published yet; it will be linked here when the dataset is released.</p>
 </div>
 <p>Each scene has a manifest at <code class="docutils literal notranslate"><span class="pre">scenes/DISASTER/LOCALITY/level_N/manifest.json</span></code>:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
@@ -323,10 +323,6 @@
 <p>USD layers must use meters, Z-up, a <code class="docutils literal notranslate"><span class="pre">/World</span></code> root and portable local references. Include every referenced asset, texture and dependency. Do not ship <code class="docutils literal notranslate"><span class="pre">omniverse://</span></code> references into the lab server. The publisher validates USD dependencies and physical properties in Isaac Sim before release. Downloads verify the archive checksum, and each run checks its selected scene manifest and required paths automatically.</p>
 <p>Ground truth contains <code class="docutils literal notranslate"><span class="pre">world_frame:</span> <span class="pre">&quot;world&quot;</span></code> and a <code class="docutils literal notranslate"><span class="pre">survivors</span></code> array of objects with unique <code class="docutils literal notranslate"><span class="pre">id</span></code> and <code class="docutils literal notranslate"><span class="pre">[x,y,z]</span></code> <code class="docutils literal notranslate"><span class="pre">position</span></code>. Ground truth is supplied to the evaluator, never mounted into policy containers. See <a class="reference internal" href="../evaluation/"><span class="std std-doc">evaluation</span></a> for optional reference route metadata.</p>
 <p><code class="docutils literal notranslate"><span class="pre">geometry_file</span></code> must be people-free damaged geometry. It and <code class="docutils literal notranslate"><span class="pre">placement_candidates_file</span></code> are required only for <a class="reference internal" href="../survivors/"><span class="std std-doc">survivor-only generation</span></a>.</p>
-<div class="maintainer-todo admonition">
-<p class="admonition-title">Maintainer TODO — placement assets</p>
-<p>Prepare the people-free geometry, posed survivor assets and verified placement candidates from the research dataset before publishing the bundle.</p>
-</div>
 </section>
 
         </article>
